@@ -1,4 +1,4 @@
-<p align="center"><img src="https://dovgopol.dev/apps/movienight/images/nowplaying.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/apps/movienight/images/upcoming.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/apps/movienight/images/detail.png" width="200" title="MovieNight"></p>
+<p align="center"><img src="https://dovgopol.dev/images/apps/movienight/github/movienight-now-playing.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/images/apps/movienight/github/movienight-upcoming.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/images/apps/movienight/github/movienight-detail.png" width="200" title="MovieNight"></p>
 
 # MovieNight
 MovieNight is a Swift iOS app showing currently playing and upcoming movies using data from themoviedb.org's REST api.
