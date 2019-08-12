@@ -15,9 +15,6 @@ Kingfisher
 
 # What I Learned
 
-* Write simple math operations with swift
-* Practice using IBActions and IBOutlets
-
 * Use CocoaPods & Kingfisher alongside DarkSky API
 * Update UI with API data
 * Parse JSON data
