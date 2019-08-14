@@ -55,18 +55,22 @@ class MovieDetailVC: UIViewController {
     
     func setRating() {
         let movieRatingPercentage = Int(movie.voteAverage * 10)
-        var ratingColor : UIColor
+        ratingTxt.text = "\(movieRatingPercentage)%"
         
         //change rating color based on percentage
+        var ratingColor : UIColor
         if movieRatingPercentage > 70 {
             ratingColor = #colorLiteral(red: 0.5450980392, green: 0.8980392157, blue: 0.5764705882, alpha: 1)
         } else if movieRatingPercentage > 40 {
             ratingColor = #colorLiteral(red: 1, green: 0.9019607843, blue: 0.2588235294, alpha: 1)
-        } else {
+        } else if movieRatingPercentage > 0 {
             ratingColor = #colorLiteral(red: 1, green: 0.2745098039, blue: 0, alpha: 1)
+        } else {
+            ratingColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            ratingTxt.text = "N/A"
         }
         ratingTxt.textColor = ratingColor
-        ratingTxt.text = "\(movieRatingPercentage)%"
+        
     }
     
     func setGenres() {
