@@ -26,12 +26,8 @@ class NowPlayingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setupCollectionView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         loadMovies()
+        setupCollectionView()
     }
     
     func setupCollectionView() {
