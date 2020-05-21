@@ -18,3 +18,9 @@ Kingfisher
 * Use CocoaPods & Kingfisher alongside DarkSky API
 * Update UI with API data
 * Parse JSON data
+
+## Contact Info:
+- Email: bogdan@dovgopol.dev
+- Web: [dovgopol.dev](https://dovgopol.dev)
+
+# Thanks for stopping by!
