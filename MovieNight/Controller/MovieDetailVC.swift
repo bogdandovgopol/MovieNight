@@ -56,7 +56,6 @@ class MovieDetailVC: UIViewController {
     func setRating() {
         let movieRatingPercentage = Int(movie.voteAverage * 10)
         ratingTxt.text = "\(movieRatingPercentage)%"
-        var ratingColor : UIColor
         
         //change rating color based on percentage
         var ratingColor : UIColor
