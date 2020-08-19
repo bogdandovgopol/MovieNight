@@ -1,0 +1,6 @@
+framework module Pods_WatchRoom {
+  umbrella header "Pods-WatchRoom-umbrella.h"
+
+  export *
+  module * { export * }
+}
