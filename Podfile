@@ -10,6 +10,7 @@ target 'WatchRoom' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Performance'
 
   target 'WatchRoomTests' do
     inherit! :search_paths
