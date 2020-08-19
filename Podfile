@@ -7,6 +7,7 @@ target 'WatchRoom' do
 
   # Pods for WatchRoom
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Crashlytics'

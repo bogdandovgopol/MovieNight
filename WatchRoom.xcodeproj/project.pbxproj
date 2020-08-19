@@ -45,6 +45,7 @@
 		40230B4A2AE2F1F5E0133239 /* Pods_WatchRoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchRoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DDF7CA8B29612EE7388BD7 /* Pods-WatchRoomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchRoomTests.release.xcconfig"; path = "Target Support Files/Pods-WatchRoomTests/Pods-WatchRoomTests.release.xcconfig"; sourceTree = "<group>"; };
 		4315CC2624ECF9DC0067B7D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		43845D6B24ED031C00448552 /* WatchRoom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchRoom.entitlements; sourceTree = "<group>"; };
 		43F4E26924ECE8900075CAF1 /* WatchRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		43F4E26B24ECE8900075CAF1 /* WatchRoom */ = {
 			isa = PBXGroup;
 			children = (
+				43845D6B24ED031C00448552 /* WatchRoom.entitlements */,
 				43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */,
 				43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */,
 				43F4E27024ECE8900075CAF1 /* ViewController.swift */,
@@ -607,6 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 727Q9XPG67;
@@ -630,6 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = WatchRoom/Info.plist;
