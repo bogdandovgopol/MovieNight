@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		0F899BD024909172A85EA5FF /* Pods_WatchRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40230B4A2AE2F1F5E0133239 /* Pods_WatchRoom.framework */; };
 		4315CC2724ECF9DC0067B7D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4315CC2624ECF9DC0067B7D1 /* GoogleService-Info.plist */; };
+		43D9688B24EDE99600A1EE49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688A24EDE99600A1EE49 /* Constants.swift */; };
+		43D9688D24EDE9AC00A1EE49 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688C24EDE9AC00A1EE49 /* Secrets.swift */; };
+		43D9688F24EDEA0B00A1EE49 /* RESTful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688E24EDEA0B00A1EE49 /* RESTful.swift */; };
+		43D9689524EDFCEA00A1EE49 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689424EDFCEA00A1EE49 /* UIColorExtension.swift */; };
+		43D9689724EE11DB00A1EE49 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */; };
+		43D9689924EE127400A1EE49 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689824EE127400A1EE49 /* AuthViewController.swift */; };
+		43D9689B24EE132B00A1EE49 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689A24EE132B00A1EE49 /* UIViewControllerExtension.swift */; };
 		43F4E26D24ECE8900075CAF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */; };
 		43F4E26F24ECE8900075CAF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */; };
 		43F4E27124ECE8900075CAF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4E27024ECE8900075CAF1 /* ViewController.swift */; };
@@ -46,6 +53,13 @@
 		40DDF7CA8B29612EE7388BD7 /* Pods-WatchRoomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchRoomTests.release.xcconfig"; path = "Target Support Files/Pods-WatchRoomTests/Pods-WatchRoomTests.release.xcconfig"; sourceTree = "<group>"; };
 		4315CC2624ECF9DC0067B7D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43845D6B24ED031C00448552 /* WatchRoom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchRoom.entitlements; sourceTree = "<group>"; };
+		43D9688A24EDE99600A1EE49 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		43D9688C24EDE9AC00A1EE49 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		43D9688E24EDEA0B00A1EE49 /* RESTful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTful.swift; sourceTree = "<group>"; };
+		43D9689424EDFCEA00A1EE49 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		43D9689824EE127400A1EE49 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		43D9689A24EE132B00A1EE49 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		43F4E26924ECE8900075CAF1 /* WatchRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +108,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43D9688424EDE91900A1EE49 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		43D9688524EDE91C00A1EE49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				43F4E27024ECE8900075CAF1 /* ViewController.swift */,
+				43D9689824EE127400A1EE49 /* AuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		43D9688624EDE92000A1EE49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43D9688924EDE96400A1EE49 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		43D9688724EDE92300A1EE49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		43D9688824EDE93C00A1EE49 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				43D9689124EDEA6C00A1EE49 /* Network */,
+				43D9688A24EDE99600A1EE49 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		43D9688924EDE96400A1EE49 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		43D9689124EDEA6C00A1EE49 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				43D9688E24EDEA0B00A1EE49 /* RESTful.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		43D9689224EDEBB800A1EE49 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				43D9688C24EDE9AC00A1EE49 /* Secrets.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
+		43D9689324EDFCD700A1EE49 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43D9689424EDFCEA00A1EE49 /* UIColorExtension.swift */,
+				43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */,
+				43D9689A24EE132B00A1EE49 /* UIViewControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		43F4E26024ECE8900075CAF1 = {
 			isa = PBXGroup;
 			children = (
@@ -119,10 +206,16 @@
 		43F4E26B24ECE8900075CAF1 /* WatchRoom */ = {
 			isa = PBXGroup;
 			children = (
+				43D9688724EDE92300A1EE49 /* Model */,
+				43D9688624EDE92000A1EE49 /* View */,
+				43D9688524EDE91C00A1EE49 /* Controller */,
+				43D9688424EDE91900A1EE49 /* API */,
+				43D9689324EDFCD700A1EE49 /* Extension */,
+				43D9688824EDE93C00A1EE49 /* Utils */,
+				43D9689224EDEBB800A1EE49 /* Secrets */,
 				43845D6B24ED031C00448552 /* WatchRoom.entitlements */,
 				43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */,
 				43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */,
-				43F4E27024ECE8900075CAF1 /* ViewController.swift */,
 				43F4E27224ECE8900075CAF1 /* Main.storyboard */,
 				43F4E27724ECE8920075CAF1 /* Assets.xcassets */,
 				43F4E27924ECE8920075CAF1 /* LaunchScreen.storyboard */,
@@ -185,7 +278,7 @@
 				43F4E26624ECE8900075CAF1 /* Frameworks */,
 				43F4E26724ECE8900075CAF1 /* Resources */,
 				A31F213F9DA724648F1B2D96 /* [CP] Embed Pods Frameworks */,
-				4315CC2824ECFCA70067B7D1 /* ShellScript */,
+				43FACF2C24EE160F0088D1D9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -328,7 +421,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4315CC2824ECFCA70067B7D1 /* ShellScript */ = {
+		43FACF2C24EE160F0088D1D9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,8 +524,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F4E27124ECE8900075CAF1 /* ViewController.swift in Sources */,
+				43D9688D24EDE9AC00A1EE49 /* Secrets.swift in Sources */,
+				43D9689B24EE132B00A1EE49 /* UIViewControllerExtension.swift in Sources */,
+				43D9689524EDFCEA00A1EE49 /* UIColorExtension.swift in Sources */,
 				43F4E26D24ECE8900075CAF1 /* AppDelegate.swift in Sources */,
+				43D9688F24EDEA0B00A1EE49 /* RESTful.swift in Sources */,
 				43F4E26F24ECE8900075CAF1 /* SceneDelegate.swift in Sources */,
+				43D9689724EE11DB00A1EE49 /* UIViewExtension.swift in Sources */,
+				43D9689924EE127400A1EE49 /* AuthViewController.swift in Sources */,
+				43D9688B24EDE99600A1EE49 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +621,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
