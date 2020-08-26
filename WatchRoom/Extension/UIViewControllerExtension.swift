@@ -7,13 +7,13 @@
 
 import Foundation
 import UIKit
-import Firebase
+import FirebaseAuth
 
 extension UIViewController {
     func isUserSignedIn() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             guard let self = self else { return }
-
+            
             if user == nil {
                 //user not logged in or not verified
                 //present SignInVC
@@ -22,9 +22,10 @@ extension UIViewController {
         }
     }
     
-    private func presentSignInVC(){
+    func presentSignInVC(){
         let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: VCIDs.SignInVC)
         present(controller, animated: false, completion: nil)
     }
 }
+

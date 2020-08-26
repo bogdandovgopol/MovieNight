@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  AuthVC.swift
 //  WatchRoom
 //
 //  Created by Bogdan on 20/8/20.
@@ -10,7 +10,7 @@ import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
 
-class AuthViewController: UIViewController {
+class AuthVC: UIViewController {
 
     //MARK: Variables
     fileprivate var currentNonce: String?
@@ -108,7 +108,7 @@ class AuthViewController: UIViewController {
     }
 }
 
-extension AuthViewController: ASAuthorizationControllerDelegate {
+extension AuthVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -151,7 +151,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate {
     
 }
 
-extension AuthViewController: ASAuthorizationControllerPresentationContextProviding {
+extension AuthVC: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }

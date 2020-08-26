@@ -12,6 +12,8 @@ target 'WatchRoom' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Performance'
+  pod 'Kingfisher'
+  pod 'IQKeyboardManagerSwift'
 
   target 'WatchRoomTests' do
     inherit! :search_paths

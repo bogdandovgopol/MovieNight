@@ -17,13 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-bg" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-Xc-N3g">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6jW-kn-iQ6">
-                                <rect key="frame" x="147.66666666666666" y="266" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="366" width="80" height="80"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wr-logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="HcW-1u-4oN">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wr-icon" translatesAutoresizingMaskIntoConstraints="NO" id="HcW-1u-4oN">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="LdV-pV-3bN"/>
@@ -36,12 +33,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
-                            <constraint firstItem="gGh-Xc-N3g" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6wY-ca-KlI"/>
-                            <constraint firstItem="6jW-kn-iQ6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="8xM-Dn-aYV"/>
+                            <constraint firstItem="6jW-kn-iQ6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8xM-Dn-aYV"/>
                             <constraint firstItem="6jW-kn-iQ6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Gkp-9A-oF3"/>
-                            <constraint firstItem="gGh-Xc-N3g" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Q8u-mv-pWg"/>
-                            <constraint firstItem="gGh-Xc-N3g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="igX-ua-4O4"/>
-                            <constraint firstAttribute="bottom" secondItem="gGh-Xc-N3g" secondAttribute="bottom" id="oYr-3f-7ia"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -51,10 +44,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch-bg" width="414" height="896"/>
-        <image name="wr-logo-icon" width="250" height="250"/>
+        <image name="wr-icon" width="195" height="106"/>
         <namedColor name="PrimaryColor">
-            <color red="0.067000001668930054" green="0.067000001668930054" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
