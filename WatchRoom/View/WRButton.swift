@@ -26,7 +26,7 @@ class WRButton: UIButton {
     
     func setGradientBorder() {
         clipsToBounds = true
-        layer.cornerRadius = self.frame.height/2
+        layer.cornerRadius = frame.height/2
         layer.cornerCurve = .continuous
         layer.backgroundColor = UIColor.clear.cgColor
         
