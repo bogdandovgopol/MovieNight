@@ -1,23 +1,19 @@
-<p align="center"><img src="https://dovgopol.dev/images/apps/movienight/github/movienight-now-playing.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/images/apps/movienight/github/movienight-upcoming.png" width="200" title="MovieNight">     <img src="https://dovgopol.dev/images/apps/movienight/github/movienight-detail.png" width="200" title="MovieNight"></p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/30866972/91657627-d5a5d400-eb05-11ea-9974-09eb897c47a3.png" width="200" title="MovieNight"> 
+  <img src="https://user-images.githubusercontent.com/30866972/91657642-e9513a80-eb05-11ea-9d4e-97f757e4b5a5.png" width="200" title="MovieNight"> 
+  <img src="https://user-images.githubusercontent.com/30866972/91657645-ee15ee80-eb05-11ea-8780-a72593074673.png" width="200" title="MovieNight"> 
+  <img src="https://user-images.githubusercontent.com/30866972/91657651-fe2dce00-eb05-11ea-9cd9-94a020c2b271.png" width="200" title="MovieNight"> 
+</p>
 
-# MovieNight
+# Watch Room
 MovieNight is a Swift iOS app showing currently playing and upcoming movies using data from themoviedb.org's REST api.
 
-If you'd like to try this project you'll need your own tmdb's API_KEY. To get a key, please follow the directions at TMDB's website [authentication page](https://developers.themoviedb.org/3/getting-started/authentication).
+You can try the app at the [App Store](https://apps.apple.com/us/app/id1520364631).
 
-After you get the key go to MovieNight/Utils/Constants.swift and add this line insise ``struct TMDB {...}``:<br/>
-``
-static let API_KEY = "YOUR_API_KEY"
-``
 
 ## Dependencies
+Firebase
 Kingfisher
-
-## What I Learned
-
-* Use CocoaPods & Kingfisher alongside DarkSky API
-* Update UI with API data
-* Parse JSON data
 
 ## Contact Info:
 - Email: bogdan@dovgopol.dev
