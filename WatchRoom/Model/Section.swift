@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 struct Section {
     let title: String
+    let fontSize: CGFloat?
+    let type: SectionType?
+    
+    enum SectionType {
+        case trending
+        case playing
+        case upcoming
+    }
 }

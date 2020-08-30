@@ -8,6 +8,7 @@
 import Foundation
 
 struct MovieDetail: Decodable {
+    let id: Int?
     let title: String?
     let tagline: String?
     let overview: String?
@@ -15,6 +16,8 @@ struct MovieDetail: Decodable {
     let posterPath: String?
     let backdropPath: String?
     let voteAverage: Double?
-    let releaseDate: String?
+    let releaseDate: Date?
+    let runtime: Int?
+    let revenue: Int?
     let genres: [Genre]?
 }

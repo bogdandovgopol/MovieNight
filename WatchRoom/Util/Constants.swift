@@ -12,25 +12,29 @@ import FirebaseFirestore
 //MARK: Variables
 let db = Firestore.firestore()
 let usersDb = db.collection("users")
+let userWatchListDb = db.collection("watchlist")
 
 //MARK: API Constants
 enum TMDB_API {
     static let BaseURL = "https://api.themoviedb.org/3"
     
-    enum Movies {
+    enum Movie {
         static let PopularURL = "\(BaseURL)/movie/popular"
         static let UpcomingURL = "\(BaseURL)/movie/upcoming"
         static let NowPlayingURL = "\(BaseURL)/movie/now_playing"
         static let TrendingTodayURL = "\(BaseURL)/trending/movie/day"
         static let SearchURL = "\(BaseURL)/search/movie"
+        static let DiscoverURL = "\(BaseURL)/discover/movie"
+        static let Details = "\(BaseURL)/movie"
     }
     
-    static let ImageBaseURL = "https://image.tmdb.org/t/p/w500"
+    static let PosterImageBaseURL = "https://image.tmdb.org/t/p/w500"
+    static let BackdropImageBaseURL = "https://image.tmdb.org/t/p/original"
 }
 
 enum UserLocale {
     static let language = Locale.current.languageCode ?? "en"
-    static let region = Locale.current.regionCode ?? ""
+    static let region = "US"//Locale.current.regionCode ?? ""
 }
 
 //MARK: App Constants

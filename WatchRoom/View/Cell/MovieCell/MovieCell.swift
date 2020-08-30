@@ -30,9 +30,17 @@ class MovieCell: UICollectionViewCell {
     }
     
     func configure(movie: MovieResult) {
-        titleTxt.text = movie.title
-        if let posterPath = movie.posterPath {
-            let imgUrl = URL(string: "\(TMDB_API.ImageBaseURL)\(posterPath)")
+        updateMovieCell(title: movie.title, posterPath: movie.posterPath)
+    }
+    
+    func configure(movie: MovieDetail) {
+        updateMovieCell(title: movie.title, posterPath: movie.posterPath)
+    }
+    
+    private func updateMovieCell(title: String?, posterPath: String?) {
+        titleTxt.text = title
+        if let posterPath = posterPath {
+            let imgUrl = URL(string: "\(TMDB_API.PosterImageBaseURL)\(posterPath)")
             posterImg.kf.indicatorType = .activity
             posterImg.kf.setImage(
                 with: imgUrl,

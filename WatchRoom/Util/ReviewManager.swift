@@ -10,6 +10,7 @@ import StoreKit
 
 enum ReviewManagerConfig: String {
     case ApplicationCountStatus = "app_count_status"
+    case ApplicationReviewRequested = "app_review_requested"
 }
 
 struct ReviewManager {
@@ -17,13 +18,16 @@ struct ReviewManager {
     
     func increaseAppOpenCount() {
         let userdefault = UserDefaults.standard
+        let didRequestedReview = userdefault.bool(forKey: ReviewManagerConfig.ApplicationReviewRequested.rawValue)
         
-        let savedCount = userdefault.integer(forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
-        if savedCount == 0 {
-            userdefault.set(1, forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
-        }
-        else{
-            userdefault.set(savedCount + 1, forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
+        if didRequestedReview == false {
+            let savedCount = userdefault.integer(forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
+            if savedCount == 0 {
+                userdefault.set(1, forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
+            }
+            else{
+                userdefault.set(savedCount + 1, forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
+            }
         }
     }
     
@@ -31,8 +35,13 @@ struct ReviewManager {
         let userdefault = UserDefaults.standard
         
         let appopencountvalue  = userdefault.integer(forKey: ReviewManagerConfig.ApplicationCountStatus.rawValue)
-        if appopencountvalue == 2 {
-            requestReview()
+        let didRequestedReview = userdefault.bool(forKey: ReviewManagerConfig.ApplicationReviewRequested.rawValue)
+        
+        if didRequestedReview == false {
+            if appopencountvalue >= 2 {
+                requestReview()
+                userdefault.set(true, forKey: ReviewManagerConfig.ApplicationReviewRequested.rawValue)
+            }
         }
     }
     

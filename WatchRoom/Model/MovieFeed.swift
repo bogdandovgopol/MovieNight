@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct MovieFeed: Decodable {
-    let totalPages: Int = 0
+struct MovieFeed: Codable {
+    let totalPages: Int?
     let movies: [MovieResult]?
     
     enum CodingKeys: String, CodingKey {
+        case totalPages
         case movies = "results"
     }
 }

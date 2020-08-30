@@ -6,27 +6,35 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 class SearchVC: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: Variables
     var movieFeed: MovieFeed!
     var movies = [MovieResult]()
     var moviesPage = 1
     var selectedMovie: MovieResult!
-    var searchQuery = "avenger"
+    var searchQuery = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         configureCollectionView()
         searchBar.delegate = self
+        tabBarController?.delegate = self
+        
+        self.searchBar.becomeFirstResponder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.isUserSignedIn()
     }
     
     //MARK: CollectionView configuration
@@ -72,7 +80,8 @@ class SearchVC: UIViewController {
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16)
         
         //define group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1/3.5))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(160))
+
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
         
         
@@ -93,17 +102,17 @@ class SearchVC: UIViewController {
     }
     
     func searchMovies(page: Int, section: Int) {
-        
+        activityIndicator.startAnimating()
         //make sure search query is not empty
         if searchQuery.isEmpty {
             print("query is empty")
             return
         }
         
-        let path = TMDB_API.Movies.SearchURL
+        let path = TMDB_API.Movie.SearchURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
-            "page": "1",
+            "page": String(page),
             "language": UserLocale.language,
             "include_adult": "false",
             "query": searchQuery
@@ -115,6 +124,7 @@ class SearchVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
+                    Crashlytics.crashlytics().record(error: error)
                 case .success(let feed):
                     self.movieFeed = feed
                     if let movies = feed.movies, movies.count > 0 {
@@ -136,9 +146,11 @@ class SearchVC: UIViewController {
                         }
                     }
                 }
+                self.activityIndicator.stopAnimating()
             }
         }
     }
+    
 }
 
 //MARK: UICollectionViewDelegate implementation
@@ -146,7 +158,7 @@ extension SearchVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            selectedMovie = movies[indexPath.row]
+            selectedMovie = movies[indexPath.item]
         default:break
         }
         
@@ -158,7 +170,7 @@ extension SearchVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == movies.count - 2 {
-            if moviesPage < movieFeed.totalPages {
+            if moviesPage < movieFeed.totalPages ?? 0 {
                 moviesPage += 1
                 searchMovies(page: moviesPage, section: 0)
             }
@@ -190,29 +202,10 @@ extension SearchVC: UICollectionViewDataSource {
     }
 }
 
-//MARK: UICollectionViewDelegateFlowLayout implementation
-extension SearchVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.id, for: indexPath) as! SectionHeader
-            
-            switch indexPath.section {
-            case 0:
-                header.configure(section: Section(title: "Trending today"), delegate: nil)
-            default: break
-            }
-            return header
-        default: return UICollectionReusableView()
-        }
-    }
-}
-
 //MARK: UISearchBarDelegate implementation
 extension SearchVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "" else {
-            print("nothing to search")
             return
         }
         
@@ -228,7 +221,6 @@ extension SearchVC: UISearchBarDelegate {
     
     @objc func reload(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "" else {
-            print("nothing to search")
             return
         }
 
@@ -237,7 +229,19 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchMovies(query: String) {
         movies.removeAll()
+        collectionView.reloadData()
         searchQuery = query
         searchMovies(page: 1, section: 0)
+    }
+}
+
+//MARK: UITabBarControllerDelegate implementation
+extension SearchVC: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if tabBarController.selectedViewController == self {
+            collectionView.setContentOffset(.zero, animated: true)
+            searchBar.becomeFirstResponder()
+        }
+        
     }
 }

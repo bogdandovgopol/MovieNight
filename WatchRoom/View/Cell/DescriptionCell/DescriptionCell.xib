@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DescriptionCell" id="gTV-IL-0wX" customClass="DescriptionCell" customModule="WatchRoom" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="121"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="121"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxo-lu-AWS">
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="121"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp7-jM-OaU">
+                                <rect key="frame" x="0.0" y="37" width="361" height="84"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-Un-JZC">
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qp7-jM-OaU" firstAttribute="top" secondItem="I7U-Un-JZC" secondAttribute="bottom" constant="16" id="0hf-i4-teR"/>
+                            <constraint firstAttribute="trailing" secondItem="qp7-jM-OaU" secondAttribute="trailing" id="HjQ-l4-xZT"/>
+                            <constraint firstAttribute="bottom" secondItem="qp7-jM-OaU" secondAttribute="bottom" id="Mjf-wf-0vy"/>
+                            <constraint firstAttribute="trailing" secondItem="I7U-Un-JZC" secondAttribute="trailing" id="Pkk-9A-9VC"/>
+                            <constraint firstItem="I7U-Un-JZC" firstAttribute="leading" secondItem="Zxo-lu-AWS" secondAttribute="leading" id="nSh-1r-x1E"/>
+                            <constraint firstItem="I7U-Un-JZC" firstAttribute="top" secondItem="Zxo-lu-AWS" secondAttribute="top" id="qJY-dr-Tyo"/>
+                            <constraint firstItem="qp7-jM-OaU" firstAttribute="leading" secondItem="Zxo-lu-AWS" secondAttribute="leading" id="ydA-XF-f8r"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Zxo-lu-AWS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5Bb-yp-AVG"/>
+                <constraint firstItem="Zxo-lu-AWS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="K0Q-hK-NJ5"/>
+                <constraint firstAttribute="trailing" secondItem="Zxo-lu-AWS" secondAttribute="trailing" id="RgP-f6-cq2"/>
+                <constraint firstAttribute="bottom" secondItem="Zxo-lu-AWS" secondAttribute="bottom" id="fBf-ym-W8R"/>
+            </constraints>
+            <size key="customSize" width="361" height="121"/>
+            <connections>
+                <outlet property="descriptionTxt" destination="qp7-jM-OaU" id="CzH-eA-63n"/>
+            </connections>
+            <point key="canvasLocation" x="347.10144927536237" y="109.48660714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="TextColor">
+            <color white="0.25499999523162842" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+    </resources>
+</document>

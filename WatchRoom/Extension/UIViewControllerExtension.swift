@@ -13,7 +13,6 @@ extension UIViewController {
     func isUserSignedIn() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             guard let self = self else { return }
-            
             if user == nil {
                 //user not logged in or not verified
                 //present SignInVC

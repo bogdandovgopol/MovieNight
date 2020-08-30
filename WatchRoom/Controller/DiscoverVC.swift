@@ -11,6 +11,7 @@ import FirebaseCrashlytics
 class DiscoverVC: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     //MARK: Variables
@@ -26,10 +27,20 @@ class DiscoverVC: UIViewController {
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.isUserSignedIn()
-        loadMovies()
+        activityIndicator.startAnimating()
+        
         configureCollectionView()
+        loadMovies()
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.activityIndicator.stopAnimating()
+            self.collectionView.fadeIn(0.5)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.isUserSignedIn()
     }
     
     //MARK: CollectionView configuration
@@ -179,12 +190,10 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Load popular movies
     func loadTrendingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movies.TrendingTodayURL
+        let path = TMDB_API.Movie.TrendingTodayURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
-            "page": String(page),
-            "language": UserLocale.language,
-            "region": "US"
+            "page": String(page)
         ]
         
         MovieService.shared.getMovies(path: path, parameters: parameters) { [weak self](result) in
@@ -210,7 +219,7 @@ class DiscoverVC: UIViewController {
                             
                         } else {
                             self.trendingMovies.append(contentsOf: movies)
-                            self.collectionView.reloadData()
+                            self.collectionView.reloadSections(IndexSet(integer: section))
                         }
                     }
                 }
@@ -220,12 +229,13 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Now playing movies
     func loadNowPlayingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movies.NowPlayingURL
+        let path = TMDB_API.Movie.NowPlayingURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
             "language": UserLocale.language,
-            "region": UserLocale.region
+            "region": UserLocale.region,
+            "include_adult": "false",
         ]
         
         MovieService.shared.getMovies(path: path, parameters: parameters) { [weak self](result) in
@@ -251,7 +261,7 @@ class DiscoverVC: UIViewController {
                             
                         } else {
                             self.nowPlayingMovies.append(contentsOf: movies)
-                            self.collectionView.reloadData()
+                            self.collectionView.reloadSections(IndexSet(integer: section))
                         }
                     }
                 }
@@ -261,12 +271,13 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Upcoming movies
     func loadUpcomingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movies.UpcomingURL
+        let path = TMDB_API.Movie.UpcomingURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
             "language": UserLocale.language,
-            "region": "US"
+            "region": UserLocale.region,
+            "include_adult": "false",
         ]
         
         MovieService.shared.getMovies(path: path, parameters: parameters) { [weak self](result) in
@@ -292,7 +303,7 @@ class DiscoverVC: UIViewController {
                             
                         } else {
                             self.upcomingMovies.append(contentsOf: movies)
-                            self.collectionView.reloadData()
+                            self.collectionView.reloadSections(IndexSet(integer: section))
                         }
                     }
                 }
@@ -307,11 +318,11 @@ extension DiscoverVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            selectedMovie = trendingMovies[indexPath.row]
+            selectedMovie = trendingMovies[indexPath.item]
         case 1:
-            selectedMovie = nowPlayingMovies[indexPath.row]
+            selectedMovie = nowPlayingMovies[indexPath.item]
         case 2:
-            selectedMovie = upcomingMovies[indexPath.row]
+            selectedMovie = upcomingMovies[indexPath.item]
         default:break
         }
         
@@ -341,15 +352,15 @@ extension DiscoverVC: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.id, for: indexPath) as! MovieCell
-            cell.configure(movie: trendingMovies[indexPath.row])
+            cell.configure(movie: trendingMovies[indexPath.item])
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.id, for: indexPath) as! MovieCell
-            cell.configure(movie: nowPlayingMovies[indexPath.row])
+            cell.configure(movie: nowPlayingMovies[indexPath.item])
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.id, for: indexPath) as! MovieCell
-            cell.configure(movie: upcomingMovies[indexPath.row])
+            cell.configure(movie: upcomingMovies[indexPath.item])
             return cell
         default: return UICollectionViewCell()
         }
@@ -365,11 +376,11 @@ extension DiscoverVC: UICollectionViewDelegateFlowLayout {
             
             switch indexPath.section {
             case 0:
-                header.configure(section: Section(title: "Trending today"), delegate: self)
+                header.configure(section: Section(title: "Trending today", fontSize: nil, type: .trending), delegate: self)
             case 1:
-                header.configure(section: Section(title: "Now streaming"), delegate: self)
+                header.configure(section: Section(title: "Now streaming", fontSize: nil, type: .playing), delegate: self)
             case 2:
-                header.configure(section: Section(title: "Coming soon"), delegate: self)
+                header.configure(section: Section(title: "Coming soon", fontSize: nil, type: .upcoming), delegate: self)
             default: break
             }
             return header
