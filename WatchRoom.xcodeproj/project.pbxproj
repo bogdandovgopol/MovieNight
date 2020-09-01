@@ -73,6 +73,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		434291E124FC98E100154576 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		076AB5D4B06EB67332EB629D /* Pods-WatchRoom-WatchRoomUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchRoom-WatchRoomUITests.debug.xcconfig"; path = "Target Support Files/Pods-WatchRoom-WatchRoomUITests/Pods-WatchRoom-WatchRoomUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0DC3E357ED31A5144FF58E1E /* Pods_WatchRoom_WatchRoomUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchRoom_WatchRoomUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +108,8 @@
 		43427D1124F9E8FC00DF6BE3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		43427D1324F9EDC300DF6BE3 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenreCell.swift; path = "../New Group/GenreCell.swift"; sourceTree = "<group>"; };
 		43427D1424F9EDC300DF6BE3 /* GenreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreCell.xib; sourceTree = "<group>"; };
+		434291D124FC98DF00154576 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		434291D324FC98DF00154576 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		436EAFC624F763EB0093A9AC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		436EAFC724F763EB0093A9AC /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
 		436EAFCC24F764140093A9AC /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
@@ -402,6 +417,8 @@
 				40230B4A2AE2F1F5E0133239 /* Pods_WatchRoom.framework */,
 				0DC3E357ED31A5144FF58E1E /* Pods_WatchRoom_WatchRoomUITests.framework */,
 				F02046E1EF9CD7B76792B4C2 /* Pods_WatchRoomTests.framework */,
+				434291D124FC98DF00154576 /* WidgetKit.framework */,
+				434291D324FC98DF00154576 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -419,6 +436,7 @@
 				43F4E26724ECE8900075CAF1 /* Resources */,
 				A31F213F9DA724648F1B2D96 /* [CP] Embed Pods Frameworks */,
 				43FACF2C24EE160F0088D1D9 /* ShellScript */,
+				434291E124FC98E100154576 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -887,7 +905,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = WatchRoom/Info.plist;
@@ -912,7 +930,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = WatchRoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

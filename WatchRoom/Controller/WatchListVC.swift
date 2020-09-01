@@ -28,14 +28,18 @@ class WatchListVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         activityIndicator.startAnimating()
-        self.isUserSignedIn()
-        configureCollectionView()
-        movies.removeAll()
-        loadWatchList()
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.activityIndicator.stopAnimating()
-            self.collectionView.fadeIn(0.5)
+        self.isUserSignedIn { [weak self](signed) in
+            guard let self = self else {return}
+            if signed == true {
+                self.configureCollectionView()
+                self.movies.removeAll()
+                self.loadWatchList()
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                    self.activityIndicator.stopAnimating()
+                    self.collectionView.fadeIn(0.5)
+                }
+            }
         }
     }
     

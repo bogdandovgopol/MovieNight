@@ -10,13 +10,16 @@ import UIKit
 import FirebaseAuth
 
 extension UIViewController {
-    func isUserSignedIn() {
+    func isUserSignedIn(completion: ((Bool?) -> Void)? = nil ) {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             guard let self = self else { return }
             if user == nil {
                 //user not logged in or not verified
                 //present SignInVC
+                completion?(false)
                 self.presentSignInVC()
+            } else {
+                completion?(true)
             }
         }
     }

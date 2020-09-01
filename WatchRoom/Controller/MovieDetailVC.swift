@@ -54,11 +54,6 @@ class MovieDetailVC: UIViewController {
         ReviewManager.shared.checkAppOpenCountAndProvideReview()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.isUserSignedIn()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
@@ -199,10 +194,12 @@ class MovieDetailVC: UIViewController {
     
     //MARK: Watchlist logic
     func loadWatchList() {
-        UserService.shared.getWatchList(userId: Auth.auth().currentUser!.uid) { (watchList) in
-            if let watchList = watchList {
-                self.watchList.append(contentsOf: watchList)
-                self.checkIfAlreadyInWatchList()
+        if let userId = Auth.auth().currentUser?.uid {
+            UserService.shared.getWatchList(userId: userId) { (watchList) in
+                if let watchList = watchList {
+                    self.watchList.append(contentsOf: watchList)
+                    self.checkIfAlreadyInWatchList()
+                }
             }
         }
     }
@@ -226,25 +223,34 @@ class MovieDetailVC: UIViewController {
         if btnLoading == false {
             addToWatchListIndicator.startAnimating()
             btnLoading = true
-            if isInWatchList == false {
-                UserService.shared.addToWatchList(userId: Auth.auth().currentUser!.uid, movieId: id) { [weak self](finished) in
-                    guard let self = self else {return}
-                    if finished == true {
-                        self.watchList.append(self.id)
-                        self.checkIfAlreadyInWatchList()
-                        self.addToWatchListIndicator.stopAnimating()
-                        self.btnLoading = false
+            self.isUserSignedIn { [weak self](signed) in
+                guard let self = self else {return}
+                
+                if signed == true {
+                    if self.isInWatchList == false {
+                        UserService.shared.addToWatchList(userId: Auth.auth().currentUser!.uid, movieId: self.id) { [weak self](finished) in
+                            guard let self = self else {return}
+                            if finished == true {
+                                self.watchList.append(self.id)
+                                self.checkIfAlreadyInWatchList()
+                                self.addToWatchListIndicator.stopAnimating()
+                                self.btnLoading = false
+                            }
+                        }
+                    } else {
+                        UserService.shared.removeFromWatchList(userId:  Auth.auth().currentUser!.uid, movieId: self.id) { [weak self](finished) in
+                            guard let self = self else {return}
+                            if finished == true {
+                                self.watchList = self.watchList.filter {$0 != self.id}
+                                self.checkIfAlreadyInWatchList()
+                                self.addToWatchListIndicator.stopAnimating()
+                                self.btnLoading = false
+                            }
+                        }
                     }
-                }
-            } else {
-                UserService.shared.removeFromWatchList(userId:  Auth.auth().currentUser!.uid, movieId: id) { [weak self](finished) in
-                    guard let self = self else {return}
-                    if finished == true {
-                        self.watchList = self.watchList.filter {$0 != self.id}
-                        self.checkIfAlreadyInWatchList()
-                        self.addToWatchListIndicator.stopAnimating()
-                        self.btnLoading = false
-                    }
+                } else {
+                    self.addToWatchListIndicator.stopAnimating()
+                    self.btnLoading = false
                 }
             }
         }

@@ -34,7 +34,6 @@ class SearchVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.isUserSignedIn()
     }
     
     //MARK: CollectionView configuration
