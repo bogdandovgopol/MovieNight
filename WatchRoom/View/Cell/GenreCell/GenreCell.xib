@@ -30,10 +30,12 @@
                         </subviews>
                         <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
-                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="leading" secondItem="b4D-o5-xEs" secondAttribute="leading" constant="20" id="OaF-GM-HXX"/>
-                            <constraint firstAttribute="trailing" secondItem="T6T-5F-6gQ" secondAttribute="trailing" constant="20" id="cbE-MH-Fyh"/>
-                            <constraint firstAttribute="bottom" secondItem="T6T-5F-6gQ" secondAttribute="bottom" constant="10" id="wJK-fx-GgT"/>
-                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="top" secondItem="b4D-o5-xEs" secondAttribute="top" constant="10" id="xxb-vj-Dzw"/>
+                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="centerY" secondItem="b4D-o5-xEs" secondAttribute="centerY" id="0vW-qO-IiS"/>
+                            <constraint firstAttribute="bottom" secondItem="T6T-5F-6gQ" secondAttribute="bottom" constant="10" id="a4u-5C-4ZV"/>
+                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="top" secondItem="b4D-o5-xEs" secondAttribute="top" constant="10" id="i4j-Nx-Hhm"/>
+                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="leading" secondItem="b4D-o5-xEs" secondAttribute="leading" constant="20" id="sNm-lK-drN"/>
+                            <constraint firstItem="T6T-5F-6gQ" firstAttribute="centerX" secondItem="b4D-o5-xEs" secondAttribute="centerX" id="sRm-1r-t8V"/>
+                            <constraint firstAttribute="trailing" secondItem="T6T-5F-6gQ" secondAttribute="trailing" constant="20" id="w0p-hd-o3j"/>
                         </constraints>
                     </view>
                 </subviews>

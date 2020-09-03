@@ -48,7 +48,7 @@ class WRButton: UIButton {
     }
     
     func fillWithGradient() {
-        self.applyLinearGradient(firstColor: UIColor.CustomColor.Purpure, secondColor: UIColor.CustomColor.Blue, startPoint: CGPoint(x: 0.0, y: 0.5), endpoint: CGPoint(x: 1.0, y: 0.5), locations: [0,1], cornerRadius: self.frame.height / 2)
+        self.applyLinearGradient(firstColor: UIColor.CustomColor.Purpure, secondColor: UIColor.CustomColor.Blue, startPoint: CGPoint(x: 0.0, y: 0.5), endpoint: CGPoint(x: 1.0, y: 0.5), locations: [0,1], cornerRadius: self.frame.size.height / 2)
     }
     
     func removeGradientLayer() {

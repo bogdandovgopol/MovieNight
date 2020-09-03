@@ -23,6 +23,7 @@ class WatchListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.delegate = self
+        configureCollectionView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -31,7 +32,6 @@ class WatchListVC: UIViewController {
         self.isUserSignedIn { [weak self](signed) in
             guard let self = self else {return}
             if signed == true {
-                self.configureCollectionView()
                 self.movies.removeAll()
                 self.loadWatchList()
                 

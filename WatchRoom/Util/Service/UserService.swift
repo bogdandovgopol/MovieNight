@@ -17,7 +17,7 @@ class UserService {
     var watchList = [Int]()
     
     func addToWatchList(userId: String, movieId: Int, completion: ((Bool?) -> Void)? = nil) {
-        userWatchListDb.document().setData(["user_id": userId, "movie_id": String(movieId)]) { (error) in
+        userWatchListDb.document().setData(["user_id": userId, "movie_id": String(movieId), "date": Date()]) { (error) in
             if let error = error {
                 Crashlytics.crashlytics().record(error: error)
                 completion?(true)
@@ -50,7 +50,7 @@ class UserService {
     
     func getWatchList(userId: String, completion: @escaping ([Int]?) -> Void) {
         watchList.removeAll()
-        userWatchListDb.whereField("user_id", isEqualTo: userId).getDocuments { [weak self](snapshot, error) in
+        userWatchListDb.whereField("user_id", isEqualTo: userId).order(by: "date", descending: true).getDocuments { [weak self](snapshot, error) in
             guard let self = self else {return}
             if let error = error {
                 Crashlytics.crashlytics().record(error: error)

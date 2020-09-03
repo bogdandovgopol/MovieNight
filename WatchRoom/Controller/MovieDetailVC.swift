@@ -34,6 +34,7 @@ class MovieDetailVC: UIViewController {
     var id: Int!
     var isInWatchList = false
     var movie: MovieDetail?
+    var credits: Credits?
     var watchList = [Int]()
     var btnLoading = false
     
@@ -44,6 +45,7 @@ class MovieDetailVC: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         configureCollectionView()
         loadMovieDetails(id: id)
+        loadMovieCredits(id: id)
         loadWatchList()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -107,7 +109,7 @@ class MovieDetailVC: UIViewController {
                 progressBlock: nil)
         }
         
-        self.collectionView.reloadData()
+        self.collectionView.reloadSections(IndexSet(integer: 0))
     }
     
     //MARK: CollectionView configuration
@@ -120,6 +122,8 @@ class MovieDetailVC: UIViewController {
         collectionView.contentInset.bottom = 16
         
         collectionView.register(GenreCell.nib, forCellWithReuseIdentifier: GenreCell.id)
+        collectionView.register(PersonCell.nib, forCellWithReuseIdentifier: PersonCell.id)
+        
         collectionView.register(SectionHeader.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.id)
     }
     
@@ -128,6 +132,8 @@ class MovieDetailVC: UIViewController {
             switch sectionNumber {
             case 0:
                 return self.genreSection()
+            case 1:
+                return self.creditsSection()
             default:
                 return self.genreSection()
             }
@@ -168,6 +174,36 @@ class MovieDetailVC: UIViewController {
         return section
     }
     
+    /// - Tag: credits section
+    func creditsSection() -> NSCollectionLayoutSection {        
+        //define item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        //configurate item
+        item.contentInsets.trailing = 12
+        
+        //define group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        
+        //define section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        //configure section
+        section.contentInsets.leading = 16
+        section.orthogonalScrollingBehavior = .continuous
+        
+        //configure header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(45))
+        section.boundarySupplementaryItems = [
+            .init(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        ]
+        
+        return section
+    }
+    
     //MARK: Get movie details
     func loadMovieDetails(id: Int) {
         let path = "\(TMDB_API.Movie.Details)/\(id)"
@@ -187,6 +223,28 @@ class MovieDetailVC: UIViewController {
                 case .success(let movie):
                     self.movie = movie
                     self.updateMovieUI()
+                }
+            }
+        }
+    }
+    
+    //MARK: Get credits
+    func loadMovieCredits(id: Int) {
+        let parameters = [
+            "api_key": Secrets.MOVIEDB_API_KEY,
+        ]
+        
+        CreditsService.shared.getMovieCredits(movieId: id, parameters: parameters) { [weak self](result) in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                    Crashlytics.crashlytics().record(error: error)
+                case .success(let credits):
+                    self.credits = credits
+                    self.collectionView.reloadSections(IndexSet(integer: 1))
                 }
             }
         }
@@ -264,12 +322,13 @@ class MovieDetailVC: UIViewController {
 //MARK: UICollectionViewDataSource implementation
 extension MovieDetailVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0: return movie?.genres?.count ?? 0
+        case 1: return credits?.cast?.count ?? 0
         default: return 0
         }
     }
@@ -280,6 +339,12 @@ extension MovieDetailVC: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCell.id, for: indexPath) as! GenreCell
             if let genres = movie?.genres {
                 cell.configure(genre: genres[indexPath.item])
+            }
+            return cell
+        case 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PersonCell.id, for: indexPath) as! PersonCell
+            if let cast = credits?.cast {
+                cell.configure(person: cast[indexPath.item])
             }
             return cell
         default: return UICollectionViewCell()
@@ -298,6 +363,10 @@ extension MovieDetailVC: UICollectionViewDelegateFlowLayout {
             case 0:
                 if let genres = movie?.genres, genres.count > 0 {
                     header.configure(section: Section(title: "Genres", fontSize: 17, type: nil), delegate: nil)
+                }
+            case 1:
+                if let cast = credits?.cast, cast.count > 0 {
+                    header.configure(section: Section(title: "Cast", fontSize: 17, type: nil), delegate: nil)
                 }
             default: break
             }
