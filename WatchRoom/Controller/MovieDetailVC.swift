@@ -88,7 +88,7 @@ class MovieDetailVC: UIViewController {
         guard let movie = movie else { return }
         
         titleTxt.text = movie.title
-        ratingTxt.text = "\(Int(movie.voteAverage ?? 0) * 10)%"
+        ratingTxt.text = "\(movie.voteAverage ?? 0)"
         overviewTxt.text = movie.overview ?? "No overview provided"
         
         if let releaseDate = movie.releaseDate {
