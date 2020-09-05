@@ -48,6 +48,7 @@ enum VCIDs {
     static let SignInVC = "SignInVC"
     static let AllMoviesVC = "AllMoviesVC"
     static let MovieDetailVC = "MovieDetailVC"
+    static let ReviewsVC = "ReviewsVC"
 }
 
 enum CellIDs {

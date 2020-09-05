@@ -48,6 +48,9 @@
 		43E92C0125030BE500B774BB /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0025030BE500B774BB /* ReviewService.swift */; };
 		43E92C0325030D0900B774BB /* ReviewFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0225030D0900B774BB /* ReviewFeed.swift */; };
 		43E92C0525030D4600B774BB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0425030D4600B774BB /* Review.swift */; };
+		43E92C072503166800B774BB /* ReviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C062503166800B774BB /* ReviewsVC.swift */; };
+		43E92C0B250319E700B774BB /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C09250319E700B774BB /* ReviewCell.swift */; };
+		43E92C0C250319E700B774BB /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E92C0A250319E700B774BB /* ReviewCell.xib */; };
 		43F092AA24F1F842000DC2AD /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F092A924F1F841000DC2AD /* ReviewManager.swift */; };
 		43F092AC24F25FFE000DC2AD /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F092AB24F25FFE000DC2AD /* SearchVC.swift */; };
 		43F4E26D24ECE8900075CAF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */; };
@@ -141,6 +144,9 @@
 		43E92C0025030BE500B774BB /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		43E92C0225030D0900B774BB /* ReviewFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFeed.swift; sourceTree = "<group>"; };
 		43E92C0425030D4600B774BB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		43E92C062503166800B774BB /* ReviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVC.swift; sourceTree = "<group>"; };
+		43E92C09250319E700B774BB /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		43E92C0A250319E700B774BB /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
 		43F092A924F1F841000DC2AD /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		43F092AB24F25FFE000DC2AD /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		43F4E26924ECE8900075CAF1 /* WatchRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +280,7 @@
 				43B9B85D24F2646F00A4211C /* MovieDetailVC.swift */,
 				43B9B86624F3BEAE00A4211C /* AllMoviesVC.swift */,
 				431ECD3124FB30D2004C64D4 /* WatchListVC.swift */,
+				43E92C062503166800B774BB /* ReviewsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -319,6 +326,7 @@
 		43D9688924EDE96400A1EE49 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				43E92C08250319CB00B774BB /* ReviewCell */,
 				43427D1724F9EDC900DF6BE3 /* GenreCell */,
 				436EAFC324F763BC0093A9AC /* DescriptionCell */,
 				436EAFC024F763850093A9AC /* PersonCell */,
@@ -353,6 +361,15 @@
 				43427D0F24F919EC00DF6BE3 /* DateExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		43E92C08250319CB00B774BB /* ReviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				43E92C09250319E700B774BB /* ReviewCell.swift */,
+				43E92C0A250319E700B774BB /* ReviewCell.xib */,
+			);
+			path = ReviewCell;
 			sourceTree = "<group>";
 		};
 		43F4E26024ECE8900075CAF1 = {
@@ -561,6 +578,7 @@
 				436EAFC924F763EB0093A9AC /* PersonCell.xib in Resources */,
 				4339A84924EFB0E200179C12 /* SectionHeader.xib in Resources */,
 				43F4E27824ECE8920075CAF1 /* Assets.xcassets in Resources */,
+				43E92C0C250319E700B774BB /* ReviewCell.xib in Resources */,
 				436EAFD624F766520093A9AC /* DetailHeader.xib in Resources */,
 				43F4E27424ECE8900075CAF1 /* Main.storyboard in Resources */,
 				4315FB1E24EF8A18001BEDFD /* MovieCell.xib in Resources */,
@@ -732,6 +750,7 @@
 				43E92BFF25030B9100B774BB /* CreditsService.swift in Sources */,
 				4315FB1424EF5689001BEDFD /* UserService.swift in Sources */,
 				43F4E26F24ECE8900075CAF1 /* SceneDelegate.swift in Sources */,
+				43E92C0B250319E700B774BB /* ReviewCell.swift in Sources */,
 				43F092AC24F25FFE000DC2AD /* SearchVC.swift in Sources */,
 				4358F74B2500912A006A3014 /* Credits.swift in Sources */,
 				43F092AA24F1F842000DC2AD /* ReviewManager.swift in Sources */,
@@ -743,6 +762,7 @@
 				431ECD3224FB30D3004C64D4 /* WatchListVC.swift in Sources */,
 				43D9689924EE127400A1EE49 /* AuthVC.swift in Sources */,
 				43D9688B24EDE99600A1EE49 /* Constants.swift in Sources */,
+				43E92C072503166800B774BB /* ReviewsVC.swift in Sources */,
 				436EAFD524F766520093A9AC /* DetailHeader.swift in Sources */,
 				43E92C0525030D4600B774BB /* Review.swift in Sources */,
 				43427D1224F9E8FD00DF6BE3 /* GradientView.swift in Sources */,

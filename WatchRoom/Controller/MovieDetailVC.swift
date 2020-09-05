@@ -342,7 +342,15 @@ class MovieDetailVC: UIViewController {
     
     /// - Tag: onReviewsPressed
     @IBAction func onReviewsPressed(_ sender: Any) {
-        debugPrint(reviewFeed)
+        if let reviews = reviewFeed?.reviews, reviews.count > 0 {
+            let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
+            let reviewsVC = storyboard.instantiateViewController(identifier: VCIDs.ReviewsVC) as! ReviewsVC
+            reviewsVC.movieId = id
+            reviewsVC.reviewFeed = reviewFeed
+            reviewsVC.reviews.append(contentsOf: reviews)
+            
+            present(reviewsVC, animated: true, completion: nil)
+        }
     }
     
     
