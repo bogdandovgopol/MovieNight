@@ -25,6 +25,7 @@ class MovieDetailVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var reviewsBtn: UIButton!
     @IBOutlet weak var addToWatchListBtn: WRButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -35,6 +36,7 @@ class MovieDetailVC: UIViewController {
     var isInWatchList = false
     var movie: MovieDetail?
     var credits: Credits?
+    var reviewFeed: ReviewFeed?
     var watchList = [Int]()
     var btnLoading = false
     
@@ -47,6 +49,7 @@ class MovieDetailVC: UIViewController {
         loadMovieDetails(id: id)
         loadMovieCredits(id: id)
         loadWatchList()
+        loadMovieReviews(id: id, page: 1)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.activityIndicator.stopAnimating()
@@ -60,6 +63,7 @@ class MovieDetailVC: UIViewController {
         super.viewWillAppear(animated)
         updateUI()
     }
+
     
     //MARK: UI
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -80,8 +84,6 @@ class MovieDetailVC: UIViewController {
         } else {
             titleTxt.textColor = UIColor.white
         }
-        
-        
     }
     
     func updateMovieUI() {
@@ -250,6 +252,29 @@ class MovieDetailVC: UIViewController {
         }
     }
     
+    //MARK: Get reviews
+    func loadMovieReviews(id: Int, page: Int) {
+        let parameters = [
+            "api_key": Secrets.MOVIEDB_API_KEY,
+            "language": UserLocale.language,
+            "page": String(page)
+        ]
+        
+        ReviewService.shared.getMovieReviews(movieId: id, parameters: parameters) { [weak self](result) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                    Crashlytics.crashlytics().record(error: error)
+                case .success(let feed):
+                    self.reviewFeed = feed
+                    self.reviewsBtn.setTitle("\(feed.reviews?.count ?? 0) reviews", for: .normal)
+                }
+            }
+        }
+    }
+    
     //MARK: Watchlist logic
     func loadWatchList() {
         if let userId = Auth.auth().currentUser?.uid {
@@ -277,6 +302,7 @@ class MovieDetailVC: UIViewController {
     }
     
     //MARK: Buttons implementation
+    /// - Tag: onAddToWatchListPressed
     @IBAction func onAddToWatchListPressed(_ sender: Any) {
         if btnLoading == false {
             addToWatchListIndicator.startAnimating()
@@ -313,6 +339,13 @@ class MovieDetailVC: UIViewController {
             }
         }
     }
+    
+    /// - Tag: onReviewsPressed
+    @IBAction func onReviewsPressed(_ sender: Any) {
+        debugPrint(reviewFeed)
+    }
+    
+    
     
 }
 

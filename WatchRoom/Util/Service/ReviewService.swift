@@ -11,7 +11,7 @@ struct ReviewService {
     static let shared = ReviewService()
     private init() {}
     
-    func getMovieReviews(movieId: Int, parameters: [String: String], completion: @escaping (Result<Credits, MError>) -> Void ) {
+    func getMovieReviews(movieId: Int, parameters: [String: String], completion: @escaping (Result<ReviewFeed, MError>) -> Void ) {
         let path = "\(TMDB_API.BaseURL)/movie/\(movieId)/reviews"
         RESTful.request(path: path, method: .get, parameters: parameters, headers: nil) { (result) in
             switch result {
@@ -23,9 +23,9 @@ struct ReviewService {
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 do{
-                    let credits = try jsonDecoder.decode(Credits.self, from: data)
+                    let reviewFeed = try jsonDecoder.decode(ReviewFeed.self, from: data)
                     
-                    completion(.success(credits))
+                    completion(.success(reviewFeed))
                 } catch (let error) {
                     debugPrint(error.localizedDescription)
                     completion(.failure(.errorDecoding))
