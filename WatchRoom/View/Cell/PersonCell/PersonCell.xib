@@ -12,30 +12,31 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PersonCell" id="gTV-IL-0wX" customClass="PersonCell" customModule="WatchRoom" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="87" height="183"/>
+            <rect key="frame" x="0.0" y="0.0" width="80" height="183"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="87" height="183"/>
+                <rect key="frame" x="0.0" y="0.0" width="80" height="183"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLr-n0-Icr">
-                        <rect key="frame" x="0.0" y="0.0" width="87" height="183"/>
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="183"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZVH-Ra-SXt">
-                                <rect key="frame" x="0.0" y="0.0" width="87" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="2f4-pl-ZSE"/>
+                                    <constraint firstAttribute="height" constant="80" id="jEZ-Nc-tZN"/>
+                                    <constraint firstAttribute="width" secondItem="ZVH-Ra-SXt" secondAttribute="height" multiplier="1:1" id="qVp-jF-D7H"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="dUp-c1-GnN">
-                                <rect key="frame" x="10" y="90" width="67" height="16"/>
+                                <rect key="frame" x="0.0" y="90" width="80" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                 <color key="textColor" name="HeadlineColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vFe-BG-3em">
-                                <rect key="frame" x="10" y="111" width="67" height="16"/>
+                                <rect key="frame" x="0.0" y="111" width="80" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,14 +46,14 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZVH-Ra-SXt" firstAttribute="leading" secondItem="uLr-n0-Icr" secondAttribute="leading" id="9Ec-4e-6sZ"/>
-                            <constraint firstAttribute="trailing" secondItem="dUp-c1-GnN" secondAttribute="trailing" constant="10" id="DPL-iV-N9U"/>
-                            <constraint firstItem="dUp-c1-GnN" firstAttribute="leading" secondItem="uLr-n0-Icr" secondAttribute="leading" constant="10" id="HIc-aF-7Ya"/>
+                            <constraint firstAttribute="trailing" secondItem="dUp-c1-GnN" secondAttribute="trailing" id="DPL-iV-N9U"/>
+                            <constraint firstItem="dUp-c1-GnN" firstAttribute="leading" secondItem="uLr-n0-Icr" secondAttribute="leading" id="HIc-aF-7Ya"/>
                             <constraint firstItem="ZVH-Ra-SXt" firstAttribute="top" secondItem="uLr-n0-Icr" secondAttribute="top" id="LOg-ru-mK4"/>
                             <constraint firstAttribute="trailing" secondItem="ZVH-Ra-SXt" secondAttribute="trailing" id="Q8n-wG-RB1"/>
                             <constraint firstItem="vFe-BG-3em" firstAttribute="top" secondItem="dUp-c1-GnN" secondAttribute="bottom" constant="5" id="SgI-Qm-IJ2"/>
-                            <constraint firstAttribute="trailing" secondItem="vFe-BG-3em" secondAttribute="trailing" constant="10" id="WTg-NJ-ypE"/>
+                            <constraint firstAttribute="trailing" secondItem="vFe-BG-3em" secondAttribute="trailing" id="WTg-NJ-ypE"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vFe-BG-3em" secondAttribute="bottom" constant="10" id="X9P-Gb-Bpb"/>
-                            <constraint firstItem="vFe-BG-3em" firstAttribute="leading" secondItem="uLr-n0-Icr" secondAttribute="leading" constant="10" id="rRQ-MV-S7V"/>
+                            <constraint firstItem="vFe-BG-3em" firstAttribute="leading" secondItem="uLr-n0-Icr" secondAttribute="leading" id="rRQ-MV-S7V"/>
                             <constraint firstItem="dUp-c1-GnN" firstAttribute="top" secondItem="ZVH-Ra-SXt" secondAttribute="bottom" constant="10" id="yYX-Pc-4Qc"/>
                         </constraints>
                     </view>

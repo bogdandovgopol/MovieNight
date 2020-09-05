@@ -39,6 +39,7 @@ class MovieDetailVC: UIViewController {
     var reviewFeed: ReviewFeed?
     var similarMovies = [MovieResult]()
     var recommendedMovies = [MovieResult]()
+    var selectedMovie: MovieResult!
     var watchList = [Int]()
     var btnLoading = false
     
@@ -183,22 +184,19 @@ class MovieDetailVC: UIViewController {
     /// - Tag: credits section
     func creditsSection() -> NSCollectionLayoutSection {
         //define item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .estimated(160))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        //configurate item
-        item.contentInsets.trailing = 16
-        
         //define group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
         
         //define section
         let section = NSCollectionLayoutSection(group: group)
         
         //configure section
         section.contentInsets.leading = 16
+        section.interGroupSpacing = 10
+        section.contentInsets.trailing = 16
         section.orthogonalScrollingBehavior = .continuous
         
         //configure header
@@ -495,6 +493,24 @@ extension MovieDetailVC: UICollectionViewDataSource {
             return cell
         default: return UICollectionViewCell()
         }
+    }
+}
+
+//MARK: UICollectionViewDelegate implementation
+extension MovieDetailVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            selectedMovie = similarMovies[indexPath.item]
+        case 3:
+            selectedMovie = recommendedMovies[indexPath.item]
+        default:break
+        }
+        
+        let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
+        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: VCIDs.MovieDetailVC) as! MovieDetailVC
+        movieDetailVC.id = selectedMovie.id
+        present(movieDetailVC, animated: true, completion: nil)
     }
 }
 
