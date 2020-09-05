@@ -26,7 +26,6 @@
 		43427D1624F9EDC300DF6BE3 /* GenreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43427D1424F9EDC300DF6BE3 /* GenreCell.xib */; };
 		4358F74B2500912A006A3014 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358F74A2500912A006A3014 /* Credits.swift */; };
 		4358F74D25009151006A3014 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358F74C25009151006A3014 /* Person.swift */; };
-		4358F74F250091F9006A3014 /* CreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358F74E250091F9006A3014 /* CreditsService.swift */; };
 		436EAFC824F763EB0093A9AC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436EAFC624F763EB0093A9AC /* PersonCell.swift */; };
 		436EAFC924F763EB0093A9AC /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436EAFC724F763EB0093A9AC /* PersonCell.xib */; };
 		436EAFCE24F764140093A9AC /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436EAFCC24F764140093A9AC /* DescriptionCell.swift */; };
@@ -45,6 +44,10 @@
 		43D9689724EE11DB00A1EE49 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */; };
 		43D9689924EE127400A1EE49 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689824EE127400A1EE49 /* AuthVC.swift */; };
 		43D9689B24EE132B00A1EE49 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689A24EE132B00A1EE49 /* UIViewControllerExtension.swift */; };
+		43E92BFF25030B9100B774BB /* CreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92BFE25030B9100B774BB /* CreditsService.swift */; };
+		43E92C0125030BE500B774BB /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0025030BE500B774BB /* ReviewService.swift */; };
+		43E92C0325030D0900B774BB /* ReviewFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0225030D0900B774BB /* ReviewFeed.swift */; };
+		43E92C0525030D4600B774BB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E92C0425030D4600B774BB /* Review.swift */; };
 		43F092AA24F1F842000DC2AD /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F092A924F1F841000DC2AD /* ReviewManager.swift */; };
 		43F092AC24F25FFE000DC2AD /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F092AB24F25FFE000DC2AD /* SearchVC.swift */; };
 		43F4E26D24ECE8900075CAF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */; };
@@ -115,7 +118,6 @@
 		434291D324FC98DF00154576 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4358F74A2500912A006A3014 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		4358F74C25009151006A3014 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		4358F74E250091F9006A3014 /* CreditsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsService.swift; sourceTree = "<group>"; };
 		436EAFC624F763EB0093A9AC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		436EAFC724F763EB0093A9AC /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
 		436EAFCC24F764140093A9AC /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,10 @@
 		43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		43D9689824EE127400A1EE49 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		43D9689A24EE132B00A1EE49 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		43E92BFE25030B9100B774BB /* CreditsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsService.swift; sourceTree = "<group>"; };
+		43E92C0025030BE500B774BB /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		43E92C0225030D0900B774BB /* ReviewFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFeed.swift; sourceTree = "<group>"; };
+		43E92C0425030D4600B774BB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		43F092A924F1F841000DC2AD /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		43F092AB24F25FFE000DC2AD /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		43F4E26924ECE8900075CAF1 /* WatchRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,7 +196,8 @@
 			children = (
 				4315FB1724EF6D8C001BEDFD /* MovieService.swift */,
 				4315FB1324EF5689001BEDFD /* UserService.swift */,
-				4358F74E250091F9006A3014 /* CreditsService.swift */,
+				43E92BFE25030B9100B774BB /* CreditsService.swift */,
+				43E92C0025030BE500B774BB /* ReviewService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -292,6 +299,8 @@
 				4376CBE124F53FAA009C1B82 /* Genre.swift */,
 				4358F74A2500912A006A3014 /* Credits.swift */,
 				4358F74C25009151006A3014 /* Person.swift */,
+				43E92C0225030D0900B774BB /* ReviewFeed.swift */,
+				43E92C0425030D4600B774BB /* Review.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -704,6 +713,7 @@
 			files = (
 				43B9B85E24F2646F00A4211C /* MovieDetailVC.swift in Sources */,
 				4315FB1A24EF7EFB001BEDFD /* MovieFeed.swift in Sources */,
+				43E92C0325030D0900B774BB /* ReviewFeed.swift in Sources */,
 				4376CBE224F53FAA009C1B82 /* Genre.swift in Sources */,
 				43F4E27124ECE8900075CAF1 /* DiscoverVC.swift in Sources */,
 				43D9688D24EDE9AC00A1EE49 /* Secrets.swift in Sources */,
@@ -719,7 +729,7 @@
 				4358F74D25009151006A3014 /* Person.swift in Sources */,
 				43427D1024F919EC00DF6BE3 /* DateExtension.swift in Sources */,
 				43B9B86724F3BEAE00A4211C /* AllMoviesVC.swift in Sources */,
-				4358F74F250091F9006A3014 /* CreditsService.swift in Sources */,
+				43E92BFF25030B9100B774BB /* CreditsService.swift in Sources */,
 				4315FB1424EF5689001BEDFD /* UserService.swift in Sources */,
 				43F4E26F24ECE8900075CAF1 /* SceneDelegate.swift in Sources */,
 				43F092AC24F25FFE000DC2AD /* SearchVC.swift in Sources */,
@@ -727,12 +737,14 @@
 				43F092AA24F1F842000DC2AD /* ReviewManager.swift in Sources */,
 				436EAFC824F763EB0093A9AC /* PersonCell.swift in Sources */,
 				4339A84824EFB0E200179C12 /* SectionHeader.swift in Sources */,
+				43E92C0125030BE500B774BB /* ReviewService.swift in Sources */,
 				43D9689724EE11DB00A1EE49 /* UIViewExtension.swift in Sources */,
 				43427D1524F9EDC300DF6BE3 /* GenreCell.swift in Sources */,
 				431ECD3224FB30D3004C64D4 /* WatchListVC.swift in Sources */,
 				43D9689924EE127400A1EE49 /* AuthVC.swift in Sources */,
 				43D9688B24EDE99600A1EE49 /* Constants.swift in Sources */,
 				436EAFD524F766520093A9AC /* DetailHeader.swift in Sources */,
+				43E92C0525030D4600B774BB /* Review.swift in Sources */,
 				43427D1224F9E8FD00DF6BE3 /* GradientView.swift in Sources */,
 				4376CBE024F53ED9009C1B82 /* MovieDetail.swift in Sources */,
 				431ECD3024FA195A004C64D4 /* WRButton.swift in Sources */,

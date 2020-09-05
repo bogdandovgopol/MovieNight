@@ -1,17 +1,18 @@
 //
-//  CreditsService.swift
+//  ReviewService.swift
 //  WatchRoom
 //
-//  Created by Bogdan on 3/9/20.
+//  Created by Bogdan on 5/9/20.
 //
+
 import Foundation
 
-struct CreditsService {
+struct ReviewService {
+    static let shared = ReviewService()
+    private init() {}
     
-    static let shared = CreditsService()
-    
-    func getMovieCredits(movieId: Int, parameters: [String: String], completion: @escaping (Result<Credits, MError>) -> Void ) {
-        let path = "\(TMDB_API.BaseURL)/movie/\(movieId)/credits"
+    func getMovieReviews(movieId: Int, parameters: [String: String], completion: @escaping (Result<Credits, MError>) -> Void ) {
+        let path = "\(TMDB_API.BaseURL)/movie/\(movieId)/reviews"
         RESTful.request(path: path, method: .get, parameters: parameters, headers: nil) { (result) in
             switch result {
             case .failure(let error):
