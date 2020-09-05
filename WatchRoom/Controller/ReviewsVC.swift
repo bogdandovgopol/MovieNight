@@ -69,10 +69,7 @@ class ReviewsVC: UIViewController {
         //define item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(10))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        //configurate item
-//        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16)
-        
+
         //define group
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
         
