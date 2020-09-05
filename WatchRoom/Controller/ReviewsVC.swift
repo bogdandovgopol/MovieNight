@@ -24,7 +24,6 @@ class ReviewsVC: UIViewController {
         super.viewDidLoad()
         activityIndicator.startAnimating()
         configureCollectionView()
-        tabBarController?.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.activityIndicator.stopAnimating()
@@ -185,15 +184,6 @@ extension ReviewsVC: UICollectionViewDelegateFlowLayout {
             }
             return header
         default: return UICollectionReusableView()
-        }
-    }
-}
-
-//MARK: UITabBarControllerDelegate implementation
-extension ReviewsVC: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if tabBarController.selectedViewController == self {
-            collectionView.setContentOffset(.zero, animated: true)
         }
     }
 }
