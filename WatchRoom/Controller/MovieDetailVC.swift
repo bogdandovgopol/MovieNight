@@ -279,7 +279,7 @@ class MovieDetailVC: UIViewController {
     //MARK: Get credits
     func loadMovieCredits(id: Int, section: Int) {
         let parameters = [
-            "api_key": Secrets.MOVIEDB_API_KEY,
+            "api_key": Secrets.MOVIEDB_API_KEY
         ]
         
         CreditsService.shared.getMovieCredits(movieId: id, parameters: parameters) { [weak self](result) in
@@ -324,7 +324,8 @@ class MovieDetailVC: UIViewController {
     func loadSimilarMovies(id: Int, section: Int) {
         let path = "\(TMDB_API.BaseURL)/movie/\(id)/similar"
         let parameters = [
-            "api_key": Secrets.MOVIEDB_API_KEY
+            "api_key": Secrets.MOVIEDB_API_KEY,
+            "language": UserLocale.language
         ]
         
         MovieService.shared.getMovies(path: path, parameters: parameters) { [weak self](result) in
@@ -348,7 +349,8 @@ class MovieDetailVC: UIViewController {
     func loadRecommendedMovies(id: Int, section: Int) {
         let path = "\(TMDB_API.BaseURL)/movie/\(id)/recommendations"
         let parameters = [
-            "api_key": Secrets.MOVIEDB_API_KEY
+            "api_key": Secrets.MOVIEDB_API_KEY,
+            "language": UserLocale.language
         ]
         
         MovieService.shared.getMovies(path: path, parameters: parameters) { [weak self](result) in

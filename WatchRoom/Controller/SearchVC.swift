@@ -112,8 +112,6 @@ class SearchVC: UIViewController {
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
-            "language": UserLocale.language,
-            "include_adult": "false",
             "query": searchQuery
         ]
         

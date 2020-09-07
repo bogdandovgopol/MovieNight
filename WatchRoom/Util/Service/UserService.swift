@@ -17,13 +17,26 @@ class UserService {
     var watchList = [Int]()
     
     func addToWatchList(userId: String, movieId: Int, completion: ((Bool?) -> Void)? = nil) {
-        userWatchListDb.document().setData(["user_id": userId, "movie_id": String(movieId), "date": Date()]) { (error) in
+        //check if already in watch list
+        userWatchListDb.whereField("user_id", isEqualTo: userId).whereField("movie_id", isEqualTo: String(movieId)).getDocuments { (snapshot, error) in
             if let error = error {
                 Crashlytics.crashlytics().record(error: error)
                 completion?(true)
                 return
             }
-            completion?(true)
+            //beforer adding movie, make sure the movie is not in watchlist already
+            if let snapshot = snapshot, snapshot.documents.count == 0 {
+               userWatchListDb.document().setData(["user_id": userId, "movie_id": String(movieId), "date": Date()]) { (error) in
+                   if let error = error {
+                       Crashlytics.crashlytics().record(error: error)
+                       completion?(true)
+                       return
+                   }
+                   completion?(true)
+               }
+            } else {
+                completion?(true)
+            }
         }
     }
     
