@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CKh-EI-NOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CKh-EI-NOo">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,25 +20,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="b56-ll-BJH">
-                                <rect key="frame" x="107.00000000000001" y="173" width="161.33333333333337" height="166.33333333333337"/>
+                                <rect key="frame" x="86.333333333333329" y="173" width="202.33333333333337" height="166.33333333333337"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wr-icon" translatesAutoresizingMaskIntoConstraints="NO" id="g2e-Vc-xPi">
-                                        <rect key="frame" x="30.666666666666657" y="0.0" width="100" height="50"/>
+                                        <rect key="frame" x="51.333333333333329" y="0.0" width="99.999999999999986" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="iIk-fs-yt4"/>
                                             <constraint firstAttribute="height" constant="50" id="k4d-aM-cFI"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch Room" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAw-42-tC4">
-                                        <rect key="frame" x="0.0" y="65" width="161.33333333333334" height="33.666666666666657"/>
+                                        <rect key="frame" x="20.666666666666671" y="65" width="161" height="33.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                         <color key="textColor" name="HeadlineColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJF-73-FSf">
-                                        <rect key="frame" x="18.666666666666664" y="113.6666666666667" width="123.66666666666669" height="52.666666666666671"/>
-                                        <string key="text">Choose your 
-movie</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You need to sign in to  use the watchlist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJF-73-FSf">
+                                        <rect key="frame" x="0.0" y="113.6666666666667" width="202.33333333333334" height="52.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                         <color key="textColor" name="HeadlineColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +52,6 @@ movie</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="zef-e3-7l7"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="b56-ll-BJH" firstAttribute="centerX" secondItem="McP-ec-sYc" secondAttribute="centerX" id="2J6-Z0-2Hl"/>
@@ -68,6 +63,7 @@ movie</string>
                             <constraint firstAttribute="bottom" secondItem="uaM-C3-Ueq" secondAttribute="bottom" id="tnM-p1-YzT"/>
                             <constraint firstItem="uaM-C3-Ueq" firstAttribute="top" secondItem="McP-ec-sYc" secondAttribute="top" id="yxe-N1-iJg"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="zef-e3-7l7"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6du-Sd-6pf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -98,7 +94,6 @@ movie</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="DfX-4T-vg8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8sf-Uc-n9L"/>
@@ -108,6 +103,7 @@ movie</string>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aiM-R1-CRD" secondAttribute="bottom" id="vvs-x5-HQv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aiM-R1-CRD" secondAttribute="trailing" id="wuZ-an-hsR"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="rectangle.stack" catalog="system" id="hSf-z3-chp"/>
                     <navigationItem key="navigationItem" id="Lhg-nH-D8F"/>
@@ -174,7 +170,7 @@ movie</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Cij-go-mhV" firstAttribute="leading" secondItem="m0w-m6-lxu" secondAttribute="leading" id="6ON-Nj-kPc"/>
                                                     <constraint firstAttribute="trailing" secondItem="Cij-go-mhV" secondAttribute="trailing" id="BQ5-Pm-aBd"/>
@@ -187,16 +183,16 @@ movie</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2Fb-mj-iNf">
-                                                <rect key="frame" x="16" y="380" width="288.66666666666669" height="25"/>
+                                                <rect key="frame" x="16" y="380" width="288.33333333333331" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 April 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jEd-0F-4gk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="105.33333333333333" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="106" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="a23-nD-vmz">
-                                                        <rect key="frame" x="125.33333333333334" y="0.0" width="67.333333333333343" height="25"/>
+                                                        <rect key="frame" x="126" y="0.0" width="65.333333333333314" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-e6-hOR">
                                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -206,15 +202,15 @@ movie</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="87%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8zY-n7-rLx">
-                                                                <rect key="frame" x="30.000000000000004" y="0.0" width="37.333333333333343" height="25"/>
+                                                                <rect key="frame" x="30.000000000000004" y="0.0" width="35.333333333333343" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkK-0i-W2U">
-                                                        <rect key="frame" x="212.66666666666666" y="0.0" width="75.999999999999972" height="25"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkK-0i-W2U">
+                                                        <rect key="frame" x="211.33333333333334" y="0.0" width="77.000000000000028" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="0 reviews">
                                                             <color key="titleColor" name="TextColor"/>
@@ -225,7 +221,7 @@ movie</string>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-fn-pds" customClass="WRButton" customModule="WatchRoom" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-fn-pds" customClass="WRButton" customModule="WatchRoom" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="425" width="343" height="50"/>
                                                 <color key="backgroundColor" name="ButtonBackgroundColor"/>
                                                 <constraints>
@@ -323,7 +319,6 @@ movie</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="bDf-wt-nSG"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="0VE-rr-O4w" firstAttribute="centerY" secondItem="XQl-14-75y" secondAttribute="centerY" id="WLq-KH-r0D"/>
@@ -335,6 +330,7 @@ movie</string>
                             <constraint firstAttribute="bottom" secondItem="aah-vO-i8l" secondAttribute="bottom" id="jvf-dp-wYh"/>
                             <constraint firstItem="0AT-yL-6lX" firstAttribute="top" secondItem="XQl-14-75y" secondAttribute="topMargin" constant="16" id="zGv-DV-oDb"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bDf-wt-nSG"/>
                     </view>
                     <size key="freeformSize" width="375" height="2000"/>
                     <connections>
@@ -389,7 +385,6 @@ movie</string>
                                 <cells/>
                             </collectionView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="guS-58-VmH"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="sSR-UJ-yCe" firstAttribute="centerX" secondItem="guS-58-VmH" secondAttribute="centerX" id="1py-1X-Fgb"/>
@@ -401,6 +396,7 @@ movie</string>
                             <constraint firstItem="gWR-zb-KgE" firstAttribute="top" secondItem="sSR-UJ-yCe" secondAttribute="bottom" constant="20" id="X1l-9s-sUI"/>
                             <constraint firstAttribute="bottom" secondItem="gWR-zb-KgE" secondAttribute="bottom" id="oBT-jY-paE"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="guS-58-VmH"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="JEy-BN-yBz" id="Ckd-o9-ApI"/>
@@ -439,7 +435,6 @@ movie</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="W4s-MX-VoA"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="RA0-eB-QAy" firstAttribute="leading" secondItem="W4s-MX-VoA" secondAttribute="leading" id="DAl-M7-Vey"/>
@@ -452,6 +447,7 @@ movie</string>
                             <constraint firstItem="Pa0-s7-lqV" firstAttribute="top" secondItem="W4s-MX-VoA" secondAttribute="top" id="dSJ-Lj-nA7"/>
                             <constraint firstItem="3OR-CM-8eu" firstAttribute="centerY" secondItem="3SB-9f-YfN" secondAttribute="centerY" id="v14-bx-jrK"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="W4s-MX-VoA"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="mY0-jg-iiT"/>
                     <connections>
@@ -488,7 +484,6 @@ movie</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="PFe-fe-LyG"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="jOn-Ca-dOh" firstAttribute="centerX" secondItem="XR4-fm-85f" secondAttribute="centerX" id="7k1-0A-gbJ"/>
@@ -498,6 +493,7 @@ movie</string>
                             <constraint firstItem="dxF-1v-reu" firstAttribute="top" secondItem="PFe-fe-LyG" secondAttribute="top" constant="20" id="UKq-Xe-ghR"/>
                             <constraint firstItem="dxF-1v-reu" firstAttribute="leading" secondItem="PFe-fe-LyG" secondAttribute="leading" id="cCU-ln-KeN"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="PFe-fe-LyG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="PvL-yU-Jkw"/>
                     <connections>
@@ -563,7 +559,6 @@ movie</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="bNT-Ac-ZNx"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="q8m-lR-JdU" firstAttribute="centerY" secondItem="hZG-2X-FBg" secondAttribute="centerY" id="G0q-dr-7iA"/>
@@ -575,6 +570,7 @@ movie</string>
                             <constraint firstItem="q8m-lR-JdU" firstAttribute="centerX" secondItem="hZG-2X-FBg" secondAttribute="centerX" id="leR-97-Qkj"/>
                             <constraint firstAttribute="bottom" secondItem="Xof-eu-XGb" secondAttribute="bottom" id="u28-0k-HXS"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bNT-Ac-ZNx"/>
                     </view>
                     <navigationItem key="navigationItem" id="3rL-bc-GER"/>
                     <connections>
@@ -610,8 +606,5 @@ movie</string>
         <namedColor name="TextColor">
             <color red="0.56099998950958252" green="0.56099998950958252" blue="0.56099998950958252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
