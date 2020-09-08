@@ -27,7 +27,7 @@ extension UIViewController {
     func presentSignInVC(){
         let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: VCIDs.SignInVC)
-        present(controller, animated: false, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
 }
 

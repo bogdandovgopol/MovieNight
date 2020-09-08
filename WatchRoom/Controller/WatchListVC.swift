@@ -4,7 +4,6 @@
 //
 //  Created by Bogdan on 30/8/20.
 //
-
 import UIKit
 import FirebaseCrashlytics
 import FirebaseAuth
@@ -32,7 +31,6 @@ class WatchListVC: UIViewController {
         self.isUserSignedIn { [weak self](signed) in
             guard let self = self else {return}
             if signed == true {
-                self.movies.removeAll()
                 self.loadWatchList()
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -46,6 +44,11 @@ class WatchListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        movies.removeAll()
+        collectionView.reloadData()
     }
     
     //MARK: CollectionView configuration
@@ -112,7 +115,7 @@ class WatchListVC: UIViewController {
     }
     
     //MARK: Get movie details
-    func loadMovies(id: Int) {
+    func loadMovieDetails(id: Int) {
         let path = "\(TMDB_API.Movie.Details)/\(id)"
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
@@ -139,7 +142,7 @@ class WatchListVC: UIViewController {
             guard let self = self else {return}
             if let watchList = watchList {
                 for item in watchList {
-                    self.loadMovies(id: item)
+                    self.loadMovieDetails(id: item)
                 }
             }
         }
