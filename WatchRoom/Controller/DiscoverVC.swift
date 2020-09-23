@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCrashlytics
+import SafariServices
 
 class DiscoverVC: UIViewController {
     //MARK: Outlets
@@ -15,20 +16,19 @@ class DiscoverVC: UIViewController {
     
     
     //MARK: Variables
-    var trendingMovies = [MovieResult]()
+    var trendingMovies = [MovieDetail]()
     var trendingMoviesPage = 1
-    var nowPlayingMovies = [MovieResult]()
+    var nowPlayingMovies = [MovieDetail]()
     var nowPlayingMoviesPage = 1
-    var upcomingMovies = [MovieResult]()
+    var upcomingMovies = [MovieDetail]()
     var upcomingMoviesPage = 1
     
-    var selectedMovie: MovieResult!
-    
+    var selectedMovie: MovieDetail!
+        
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.startAnimating()
-        
         configureCollectionView()
         loadMovies()
         
@@ -185,7 +185,7 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Load popular movies
     func loadTrendingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movie.TrendingTodayURL
+        let path = TMDB_API.v3.Movie.TrendingTodayURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page)
@@ -198,6 +198,7 @@ class DiscoverVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     if let movies = feed.movies, movies.count > 0 {
                         if page > 1 {
@@ -224,7 +225,7 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Now playing movies
     func loadNowPlayingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movie.NowPlayingURL
+        let path = TMDB_API.v3.Movie.NowPlayingURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
@@ -240,6 +241,7 @@ class DiscoverVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     if let movies = feed.movies, movies.count > 0 {
                         if page > 1 {
@@ -266,7 +268,7 @@ class DiscoverVC: UIViewController {
     
     /// - Tag: Upcoming movies
     func loadUpcomingMovies(page: Int, section: Int) {
-        let path = TMDB_API.Movie.UpcomingURL
+        let path = TMDB_API.v3.Movie.UpcomingURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
@@ -282,6 +284,7 @@ class DiscoverVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     if let movies = feed.movies, movies.count > 0 {
                         if page > 1 {

@@ -103,6 +103,7 @@ class ReviewsVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     self.reviewFeed = feed
                     if let reviews = feed.reviews, reviews.count > 0 {

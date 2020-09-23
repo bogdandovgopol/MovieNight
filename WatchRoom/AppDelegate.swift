@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseCore
 import IQKeyboardManagerSwift
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     

@@ -11,8 +11,8 @@ struct ReviewService {
     static let shared = ReviewService()
     private init() {}
     
-    func getMovieReviews(movieId: Int, parameters: [String: String], completion: @escaping (Result<ReviewFeed, MError>) -> Void ) {
-        let path = "\(TMDB_API.BaseURL)/movie/\(movieId)/reviews"
+    func getMovieReviews(movieId: Int, parameters: [String: String], completion: @escaping (Result<ReviewFeed, WRError>) -> Void ) {
+        let path = "\(TMDB_API.BaseV3URL)/movie/\(movieId)/reviews"
         RESTful.request(path: path, method: .get, parameters: parameters, headers: nil) { (result) in
             switch result {
             case .failure(let error):
@@ -28,7 +28,7 @@ struct ReviewService {
                     completion(.success(reviewFeed))
                 } catch (let error) {
                     debugPrint(error.localizedDescription)
-                    completion(.failure(.errorDecoding))
+                    completion(.failure(.invalidResponse))
                 }
             }
         }

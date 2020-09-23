@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct MovieDetail: Decodable {
-    let id: Int?
-    let title: String?
-    let tagline: String?
-    let overview: String?
-    let popularity: Double?
-    let posterPath: String?
-    let backdropPath: String?
-    let voteAverage: Double?
-    let releaseDate: Date?
-    let runtime: Int?
-    let revenue: Int?
-    let genres: [Genre]?
+struct MovieDetail: Codable {
+    var id: Int?
+    var title: String?
+    var tagline: String?
+    var overview: String?
+    var popularity: Double?
+    var posterPath: String?
+    var backdropPath: String?
+    var voteAverage: Double?
+    var releaseDate: String?
+    var runtime: Int?
+    var revenue: Int?
+    var genres: [Genre]?
 }

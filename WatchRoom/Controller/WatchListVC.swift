@@ -18,6 +18,10 @@ class WatchListVC: UIViewController {
     //MARK: Variables
     var movies = [MovieDetail]()
     var selectedMovie: MovieDetail!
+    var page = 1
+    var isLoadingMoreMovies = false
+    var hasMoreMovies = true
+    var signInType: SignInType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,25 +32,17 @@ class WatchListVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         activityIndicator.startAnimating()
-        self.isUserSignedIn { [weak self](signed) in
-            guard let self = self else {return}
-            if signed == true {
-                self.loadWatchList()
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                    self.activityIndicator.stopAnimating()
-                    self.collectionView.fadeIn(0.5)
-                }
-            }
-        }
+        loadWatchlistIfSignedIn()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+            self.collectionView.fadeIn(0.5)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
+        self.page = 1
+        self.hasMoreMovies = true
         movies.removeAll()
         collectionView.reloadData()
     }
@@ -85,17 +81,18 @@ class WatchListVC: UIViewController {
     
     /// - Tag: Movies section
     func moviesSection() -> NSCollectionLayoutSection {
+        let padding: CGFloat = 16
         
         //define item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         //configurate item
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: padding, trailing: padding)
         
         //define group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.7))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
         
         
         //define section
@@ -114,35 +111,46 @@ class WatchListVC: UIViewController {
         return section
     }
     
-    //MARK: Get movie details
-    func loadMovieDetails(id: Int) {
-        let path = "\(TMDB_API.Movie.Details)/\(id)"
-        let parameters = [
-            "api_key": Secrets.MOVIEDB_API_KEY,
-            "language": UserLocale.language
-        ]
-        MovieService.shared.getMovie(path: path, parameters: parameters) { [weak self](result) in
+    func loadWatchlistIfSignedIn() {
+        isUserSignedIn { [weak self](type) in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    debugPrint(error.localizedDescription)
-                    Crashlytics.crashlytics().record(error: error)
-                case .success(let movie):
-                    self.movies.append(movie)
-                    self.collectionView.reloadData()
-                }
+            guard let type = type else {
+                self.presentSignInVC()
+                self.tabBarController?.selectedIndex = 0
+                return
+            }
+            
+            self.signInType = type
+            
+            switch type {
+            case .firebase:
+                self.loadWatchlist(type: .firebase, page: self.page)
+            case .tmdb:
+                self.loadWatchlist(type: .tmdb, page: self.page)
             }
         }
     }
     
-    //MARK: Watchlist logic
-    func loadWatchList() {
-        UserService.shared.getWatchList(userId: Auth.auth().currentUser!.uid) { [weak self](watchList) in
-            guard let self = self else {return}
-            if let watchList = watchList {
-                for item in watchList {
-                    self.loadMovieDetails(id: item)
+    func loadWatchlist(type: SignInType, page: Int) {
+        activityIndicator.startAnimating()
+        isLoadingMoreMovies = true
+        WatchlistService.shared.loadWatchlist(with: type, page: page) { [weak self](movies) in
+            guard let self = self else { return }
+            if type == .tmdb && movies.count < 20 { self.hasMoreMovies = false }
+            
+            DispatchQueue.main.async {
+                var indexPaths = [IndexPath]()
+                for item in 0..<movies.count {
+                    let indexPath = IndexPath(row: item + self.movies.count, section: 0)
+                    indexPaths.append(indexPath)
+                }
+                self.collectionView.performBatchUpdates({
+                    self.movies.append(contentsOf: movies)
+                    self.collectionView.insertItems(at: indexPaths)
+                    
+                }) { (_) in
+                    self.isLoadingMoreMovies = false
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -163,6 +171,17 @@ extension WatchListVC: UICollectionViewDelegate {
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: VCIDs.MovieDetailVC) as! MovieDetailVC
         movieDetailVC.id = selectedMovie.id
         present(movieDetailVC, animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == movies.count - 3 {
+            if signInType == .tmdb {
+                guard hasMoreMovies, !isLoadingMoreMovies else { return }
+                
+                page += 1
+                loadWatchlist(type: .tmdb, page: self.page)
+            }
+        }
     }
 }
 

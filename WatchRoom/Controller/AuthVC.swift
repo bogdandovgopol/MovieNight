@@ -19,32 +19,81 @@ class AuthVC: UIViewController {
     fileprivate var currentNonce: String?
     var isDarkModeEnabled = false
     
+    var requestToken = ""
+    
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         createSignInWithAppleButton()
+        createNotificationObservers()
     }
     
     //MARK: Sign in with apple implementation
     func createSignInWithAppleButton() {
+        let tmdbBtn = WRTMDBSignInButton(title: "Sign in with TMDB", backgroundColor: .systemGreen)
         let appleBtn = ASAuthorizationAppleIDButton(type: .continue, style: (traitCollection.userInterfaceStyle == .light) ? .black : .white)
         appleBtn.translatesAutoresizingMaskIntoConstraints = false
+        appleBtn.layer.cornerRadius = 7
         
-        self.view.addSubview(appleBtn)
+        view.addSubview(tmdbBtn)
+        view.addSubview(appleBtn)
+        
+        print(appleBtn.layer.cornerRadius)
         
         NSLayoutConstraint.activate([
             appleBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
             appleBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),
             appleBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70.0),
-            appleBtn.heightAnchor.constraint(equalToConstant: 50.0)
+            appleBtn.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            tmdbBtn.centerXAnchor.constraint(equalTo: appleBtn.centerXAnchor),
+            tmdbBtn.widthAnchor.constraint(equalTo: appleBtn.widthAnchor),
+            tmdbBtn.heightAnchor.constraint(equalToConstant: 50),
+            tmdbBtn.bottomAnchor.constraint(equalTo: appleBtn.topAnchor, constant: -20.0)
         ])
         
         appleBtn.addTarget(self, action: #selector(appleSignInTapped), for: .touchUpInside)
+        tmdbBtn.addTarget(self, action: #selector(tmdbSignInTapped), for: .touchUpInside)
     }
     
     @objc func appleSignInTapped() {
         performSignInWithApple()
+    }
+    
+    @objc func tmdbSignInTapped() {
+        TMDBAuthService.shared.createRequestToken { [weak self](requestToken) in
+            guard let self = self else { return }
+            guard let requestToken = requestToken else { return }
+            guard let url = URL(string: TMDB_API.v4.Auth.RequestTokenRedirectURL + requestToken) else { return }
+            self.requestToken = requestToken
+            DispatchQueue.main.async {
+                self.presentSafariVC(with: url)
+            }
+        }
+    }
+    
+    func createNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(TMDBAuthApproved), name: NotificationKeys.TMDBAuthApprovedKey, object: nil)
+    }
+    
+    @objc func TMDBAuthApproved() {
+        TMDBAuthService.shared.getCredentials(withRequestToken: requestToken) { [weak self](credentials) in
+            guard let self = self else { return }
+            guard let credentials = credentials else {
+                self.presentSimpleAlert(withTitle: "Something went wrong", message: "Unable to log you in with TMDB account. Please try again.")
+                return
+            }
+            PersistanceService.updateCredentials(with: credentials, actionType: .add) { [weak self](error) in
+                guard let self = self else { return }
+                if let error = error {
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
+                }
+                DispatchQueue.main.async {
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func performSignInWithApple() {
@@ -162,7 +211,7 @@ extension AuthVC: ASAuthorizationControllerDelegate {
                         self.registerFirestoreUser(user: user)
                     }
                     
-                    self.dismiss(animated: false, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }

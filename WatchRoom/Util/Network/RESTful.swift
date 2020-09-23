@@ -6,41 +6,34 @@
 //
 import Foundation
 
-// MARK: Error
-enum NError: String, Error {
-    case invalidUrl = "API URL is malformated"
-    case unableToComplete = "Unable to complete your request. Please check your internet connection."
-    case invalidData = "The data received from the server was invalid. Please try again."
-    case invalidJson
-}
-
 enum RequestMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
+    case delete = "DELETE"
 }
 
 // MARK: Networking
 let RESTful = _RESTful()
 final class _RESTful {
-    func request(path: String, method: RequestMethod, parameters: [String:String]?, headers: [String:String]?, completion: @escaping (Result<Data, NError>) -> Void) {
+    func request(path: String, method: RequestMethod, parameters: [String:Any]?, headers: [String:String]?, completion: @escaping (Result<Data, WRError>) -> Void) {
         
         guard var components = URLComponents(string: path) else {
             completion(.failure(.invalidUrl))
             return
         }
-        
+                
         // GET: Query string parameters
         if method == .get, let parameters = parameters {
             components.queryItems = parameters.map({ (key, value) in
-                URLQueryItem(name: key, value: value)
+                URLQueryItem(name: key, value: "\(value)")
             })
         }
                 
         var request = URLRequest(url: components.url!)
         
         // POST/PUT: Request body parameters
-        if method == .post || method == .put {
+        if method == .post || method == .put || method == .delete {
             if let parameters = parameters {
                 do {
                     request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -49,7 +42,6 @@ final class _RESTful {
                 }
             }
         }
-        
         request.httpMethod = method.rawValue
         
         //HEADERS
@@ -67,11 +59,8 @@ final class _RESTful {
                 completion(.failure(.unableToComplete))
             }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.invalidData))
-                return
-            }
-            
+//            debugPrint(String(data: request.httpBody ?? Data(), encoding: String.Encoding.utf8))
+//            print(String(data: data!, encoding: String.Encoding.utf8))
             
             guard let data = data else {
                 completion(.failure(.invalidData))

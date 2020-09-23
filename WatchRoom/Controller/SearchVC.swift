@@ -17,9 +17,9 @@ class SearchVC: UIViewController {
     
     //MARK: Variables
     var movieFeed: MovieFeed!
-    var movies = [MovieResult]()
+    var movies = [MovieDetail]()
     var moviesPage = 1
-    var selectedMovie: MovieResult!
+    var selectedMovie: MovieDetail!
     var searchQuery = ""
     
     
@@ -108,7 +108,7 @@ class SearchVC: UIViewController {
             return
         }
         
-        let path = TMDB_API.Movie.SearchURL
+        let path = TMDB_API.v3.Movie.SearchURL
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "page": String(page),
@@ -122,6 +122,7 @@ class SearchVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     self.movieFeed = feed
                     if let movies = feed.movies, movies.count > 0 {
