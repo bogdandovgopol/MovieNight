@@ -10,8 +10,8 @@ struct CreditsService {
     
     static let shared = CreditsService()
     
-    func getMovieCredits(movieId: Int, parameters: [String: String], completion: @escaping (Result<Credits, MError>) -> Void ) {
-        let path = "\(TMDB_API.BaseURL)/movie/\(movieId)/credits"
+    func getMovieCredits(movieId: Int, parameters: [String: String], completion: @escaping (Result<Credits, WRError>) -> Void ) {
+        let path = "\(TMDB_API.BaseV3URL)/movie/\(movieId)/credits"
         RESTful.request(path: path, method: .get, parameters: parameters, headers: nil) { (result) in
             switch result {
             case .failure(let error):
@@ -27,7 +27,7 @@ struct CreditsService {
                     completion(.success(credits))
                 } catch (let error) {
                     debugPrint(error.localizedDescription)
-                    completion(.failure(.errorDecoding))
+                    completion(.failure(.invalidResponse))
                 }
             }
         }

@@ -37,11 +37,12 @@ class MovieDetailVC: UIViewController {
     var movie: MovieDetail?
     var credits: Credits?
     var reviewFeed: ReviewFeed?
-    var similarMovies = [MovieResult]()
-    var recommendedMovies = [MovieResult]()
-    var selectedMovie: MovieResult!
-    var watchList = [Int]()
+    var similarMovies = [MovieDetail]()
+    var recommendedMovies = [MovieDetail]()
+    var selectedMovie: MovieDetail!
+//    var watchList = [MovieDetail]()
     var btnLoading = false
+    var signInType: SignInType!
     
     //MARK: Lifecycles
     override func viewDidLoad() {
@@ -49,7 +50,12 @@ class MovieDetailVC: UIViewController {
         self.activityIndicator.startAnimating()
         scrollView.contentInsetAdjustmentBehavior = .never
         configureCollectionView()
-        loadMovies()
+        loadMovieDetails(id: id)
+        loadMovieCredits(id: id, section: 1)
+        loadSimilarMovies(id: id, section: 2)
+        loadRecommendedMovies(id: id, section: 3)
+        loadMovieReviews(id: id)
+        checkIfAlreadyInWatchList()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.activityIndicator.stopAnimating()
@@ -59,11 +65,12 @@ class MovieDetailVC: UIViewController {
         ReviewManager.shared.checkAppOpenCountAndProvideReview()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
     }
-
+    
     
     //MARK: UI
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -94,7 +101,7 @@ class MovieDetailVC: UIViewController {
         overviewTxt.text = movie.overview ?? "No overview provided"
         
         if let releaseDate = movie.releaseDate {
-            releaseDateTxt.text = releaseDate.toString(format: "d MMMM y")
+            releaseDateTxt.text = releaseDate.convertToDate()?.toString(format: "d MMMM y") ?? "N/A"
         }
         
         if let backdropPath = movie.backdropPath {
@@ -241,20 +248,11 @@ class MovieDetailVC: UIViewController {
         
         return section
     }
-    
-    //MARK: Load movies
-    func loadMovies() {
-        loadMovieDetails(id: id)
-        loadWatchList()
-        loadMovieCredits(id: id, section: 1)
-        loadSimilarMovies(id: id, section: 2)
-        loadRecommendedMovies(id: id, section: 3)
-        loadMovieReviews(id: id)
-    }
+
     
     //MARK: Get movie details
     func loadMovieDetails(id: Int) {
-        let path = "\(TMDB_API.Movie.Details)/\(id)"
+        let path = "\(TMDB_API.v3.Movie.Details)/\(id)"
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "language": UserLocale.language
@@ -268,6 +266,7 @@ class MovieDetailVC: UIViewController {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
                     Crashlytics.crashlytics().record(error: error)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let movie):
                     self.movie = movie
                     self.updateMovieUI()
@@ -322,7 +321,7 @@ class MovieDetailVC: UIViewController {
     
     //MARK: Get similar movies
     func loadSimilarMovies(id: Int, section: Int) {
-        let path = "\(TMDB_API.BaseURL)/movie/\(id)/similar"
+        let path = "\(TMDB_API.BaseV3URL)/movie/\(id)/similar"
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "language": UserLocale.language
@@ -347,7 +346,7 @@ class MovieDetailVC: UIViewController {
     
     //MARK: Get recommended movies
     func loadRecommendedMovies(id: Int, section: Int) {
-        let path = "\(TMDB_API.BaseURL)/movie/\(id)/recommendations"
+        let path = "\(TMDB_API.BaseV3URL)/movie/\(id)/recommendations"
         let parameters = [
             "api_key": Secrets.MOVIEDB_API_KEY,
             "language": UserLocale.language
@@ -371,28 +370,34 @@ class MovieDetailVC: UIViewController {
     }
     
     //MARK: Watchlist logic
-    func loadWatchList() {
-        if let userId = Auth.auth().currentUser?.uid {
-            UserService.shared.getWatchList(userId: userId) { (watchList) in
-                if let watchList = watchList {
-                    self.watchList.append(contentsOf: watchList)
-                    self.checkIfAlreadyInWatchList()
+    func checkIfAlreadyInWatchList() {
+        isUserSignedIn { [weak self](type) in
+            guard let self = self else { return }
+            guard let type = type else {
+                return
+            }
+
+            self.signInType = type
+
+            WatchlistService.shared.isMediaInWatchlist(mediaId: self.id, signInType: type) { (found) in
+                DispatchQueue.main.async {
+                    self.changeWatchlistBtnState(isInWatchlist: found ?? false)
                 }
             }
         }
     }
     
-    func checkIfAlreadyInWatchList() {
-        if watchList.contains(id) == true {
-            addToWatchListBtn.setTitle("In Watchlist", for: .normal)
-            addToWatchListBtn.setTitleColor(UIColor.white, for: .normal)
-            addToWatchListBtn.fillWithGradient()
-            isInWatchList = true
+    func changeWatchlistBtnState(isInWatchlist: Bool) {
+        if isInWatchlist == true {
+            self.addToWatchListBtn.setTitle("In Watchlist", for: .normal)
+            self.addToWatchListBtn.setTitleColor(UIColor.white, for: .normal)
+            self.addToWatchListBtn.fillWithGradient()
+            self.isInWatchList = true
         } else {
-            addToWatchListBtn.setTitle("Add to Watchlist", for: .normal)
-            addToWatchListBtn.setTitleColor(UIColor(named: "HeadlineColor") ?? UIColor.gray, for: .normal)
-            addToWatchListBtn.removeGradientLayer()
-            isInWatchList = false
+            self.addToWatchListBtn.setTitle("Add to Watchlist", for: .normal)
+            self.addToWatchListBtn.setTitleColor(UIColor(named: "HeadlineColor") ?? UIColor.gray, for: .normal)
+            self.addToWatchListBtn.removeGradientLayer()
+            self.isInWatchList = false
         }
     }
     
@@ -402,34 +407,96 @@ class MovieDetailVC: UIViewController {
         if btnLoading == false {
             addToWatchListIndicator.startAnimating()
             btnLoading = true
-            self.isUserSignedIn { [weak self](signed) in
-                guard let self = self else {return}
-                
-                if signed == true {
-                    if self.isInWatchList == false {
-                        UserService.shared.addToWatchList(userId: Auth.auth().currentUser!.uid, movieId: self.id) { [weak self](finished) in
-                            guard let self = self else {return}
-                            if finished == true {
-                                self.watchList.append(self.id)
-                                self.checkIfAlreadyInWatchList()
+            
+            if self.isInWatchList == false {
+                switch self.signInType {
+                case .firebase:
+                    WatchlistService.shared.updateFirebaseWatchlist(userId: Auth.auth().currentUser?.uid ?? "", movieId: self.id, actionType: .add) { [weak self](error) in
+                        guard let self = self else { return }
+                        DispatchQueue.main.async {
+                            if let error = error {                       
+                                debugPrint(error.localizedDescription)
+                                Crashlytics.crashlytics().log(error.localizedDescription)
                                 self.addToWatchListIndicator.stopAnimating()
                                 self.btnLoading = false
+                                self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
+                                return
                             }
-                        }
-                    } else {
-                        UserService.shared.removeFromWatchList(userId:  Auth.auth().currentUser!.uid, movieId: self.id) { [weak self](finished) in
-                            guard let self = self else {return}
-                            if finished == true {
-                                self.watchList = self.watchList.filter {$0 != self.id}
-                                self.checkIfAlreadyInWatchList()
-                                self.addToWatchListIndicator.stopAnimating()
-                                self.btnLoading = false
-                            }
+                            
+                            self.changeWatchlistBtnState(isInWatchlist: true)
+                            self.addToWatchListIndicator.stopAnimating()
+                            self.btnLoading = false
                         }
                     }
-                } else {
+                case .tmdb:
+                    WatchlistService.shared.updateTMDBWatchlistWithCredentials(mediaId: self.id, mediaType: .movie, actionType: .add) { [weak self](error) in
+                        guard let self = self else { return }
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                debugPrint(error.localizedDescription)
+                                Crashlytics.crashlytics().log(error.localizedDescription)
+                                self.addToWatchListIndicator.stopAnimating()
+                                self.btnLoading = false
+                                self.presentSignInVC()
+                                return
+                            }
+                            self.changeWatchlistBtnState(isInWatchlist: true)
+                            self.addToWatchListIndicator.stopAnimating()
+                            self.btnLoading = false
+                        }
+                    }
+                case .none:
                     self.addToWatchListIndicator.stopAnimating()
                     self.btnLoading = false
+                    self.presentSignInVC()
+                    break
+                }
+            } else {
+                switch self.signInType {
+                case .firebase:
+                    WatchlistService.shared.updateFirebaseWatchlist(userId: Auth.auth().currentUser?.uid ?? "", movieId: self.id, actionType: .remove) { [weak self](error) in
+                        guard let self = self else { return }
+                        
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                debugPrint(error.localizedDescription)
+                                Crashlytics.crashlytics().log(error.localizedDescription)
+                                self.addToWatchListIndicator.stopAnimating()
+                                self.btnLoading = false
+                                self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
+                                return
+                            }
+                            
+                            self.changeWatchlistBtnState(isInWatchlist: false)
+                            self.addToWatchListIndicator.stopAnimating()
+                            self.btnLoading = false
+                        }
+                    }
+                case .tmdb:
+                    WatchlistService.shared.updateTMDBWatchlistWithCredentials(mediaId: self.id, mediaType: .movie, actionType: .remove) { [weak self](error) in
+                        guard let self = self else { return }
+                        
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                debugPrint(error.localizedDescription)
+                                Crashlytics.crashlytics().log(error.localizedDescription)
+                                self.addToWatchListIndicator.stopAnimating()
+                                self.btnLoading = false
+//                                self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
+                                self.presentSignInVC()
+                                return
+                            }
+                            
+                            self.changeWatchlistBtnState(isInWatchlist: false)
+                            self.addToWatchListIndicator.stopAnimating()
+                            self.btnLoading = false
+                        }
+                    }
+                case .none:
+                    self.addToWatchListIndicator.stopAnimating()
+                    self.btnLoading = false
+                    self.presentSignInVC()
+                    break
                 }
             }
         }

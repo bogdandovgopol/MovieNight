@@ -29,10 +29,6 @@ class MovieCell: UICollectionViewCell {
         posterImg.image = UIImage()
     }
     
-    func configure(movie: MovieResult) {
-        updateMovieCell(title: movie.title, posterPath: movie.posterPath)
-    }
-    
     func configure(movie: MovieDetail) {
         updateMovieCell(title: movie.title, posterPath: movie.posterPath)
     }

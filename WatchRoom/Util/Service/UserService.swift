@@ -2,81 +2,44 @@
 //  UserService.swift
 //  WatchRoom
 //
-//  Created by Bogdan on 21/8/20.
+//  Created by Bogdan on 23/9/20.
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseCrashlytics
+import KeychainAccess
+import FirebaseAuth
 
-class UserService {
+struct UserService {
     static let shared = UserService()
     private init() {}
     
-    //MARK: Variables
-    var watchList = [Int]()
-    
-    func addToWatchList(userId: String, movieId: Int, completion: ((Bool?) -> Void)? = nil) {
-        //check if already in watch list
-        userWatchListDb.whereField("user_id", isEqualTo: userId).whereField("movie_id", isEqualTo: String(movieId)).getDocuments { (snapshot, error) in
-            if let error = error {
-                Crashlytics.crashlytics().record(error: error)
-                completion?(true)
-                return
-            }
-            //beforer adding movie, make sure the movie is not in watchlist already
-            if let snapshot = snapshot, snapshot.documents.count == 0 {
-               userWatchListDb.document().setData(["user_id": userId, "movie_id": String(movieId), "date": Date()]) { (error) in
-                   if let error = error {
-                       Crashlytics.crashlytics().record(error: error)
-                       completion?(true)
-                       return
-                   }
-                   completion?(true)
-               }
-            } else {
-                completion?(true)
-            }
-        }
-    }
-    
-    func removeFromWatchList(userId: String, movieId: Int, completion: ((Bool?) -> Void)? = nil) {
-        userWatchListDb.whereField("user_id", isEqualTo: userId).whereField("movie_id", isEqualTo: String(movieId)).getDocuments { (snapshot, error) in
-            if let error = error {
-                Crashlytics.crashlytics().record(error: error)
-                completion?(true)
-                return
-            } else {
-                for document in snapshot!.documents {
-                    document.reference.delete { (error) in
-                        if let error = error {
-                            Crashlytics.crashlytics().record(error: error)
-                            completion?(true)
-                            return
-                        }
-                        completion?(true)
-                    }
+    private func signOutFromTMDB(completion: @escaping (WRError?) -> Void) {
+        PersistanceService.retrieveTMDBCredentials { (result) in
+            switch result {
+            case .success(let credentials):
+                guard let credentials = credentials else {
+                    completion(nil)
+                    return
                 }
+                TMDBAuthService.shared.deleteSession(session: credentials.sessionId) { (error) in
+                    PersistanceService.removeCredentials()
+                    if let _ = error { return }
+                    completion(nil)
+                }
+            case .failure(let error):
+                completion(error)
             }
         }
     }
     
-    func getWatchList(userId: String, completion: @escaping ([Int]?) -> Void) {
-        watchList.removeAll()
-        userWatchListDb.whereField("user_id", isEqualTo: userId).order(by: "date", descending: true).getDocuments { [weak self](snapshot, error) in
-            guard let self = self else {return}
-            if let error = error {
-                Crashlytics.crashlytics().record(error: error)
-                completion(nil)
-                return
-            } else {
-                for document in snapshot!.documents {
-                    let data = document.data()
-                    let movieId = Int((data["movie_id"] as! NSString).intValue)
-                    self.watchList.append(Int(movieId))
-                }
-                completion(self.watchList)
-            }
+    func signOut(completion: @escaping (WRError?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            signOutFromTMDB(completion: completion)
+        } catch {
+            signOutFromTMDB(completion: completion)
+            completion(.unableToSignOut)
         }
     }
+    
 }

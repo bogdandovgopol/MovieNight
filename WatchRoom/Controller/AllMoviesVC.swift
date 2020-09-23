@@ -16,9 +16,9 @@ class AllMoviesVC: UIViewController {
     // MARK: Variables
     var section: Section!
     var movieFeed: MovieFeed!
-    var movies = [MovieResult]()
+    var movies = [MovieDetail]()
     var moviesPage = 1
-    var selectedMovie: MovieResult!
+    var selectedMovie: MovieDetail!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,11 +99,11 @@ class AllMoviesVC: UIViewController {
         var path = ""
         switch self.section.type {
         case .trending:
-            path = TMDB_API.Movie.TrendingTodayURL
+            path = TMDB_API.v3.Movie.TrendingTodayURL
         case .playing:
-            path = TMDB_API.Movie.NowPlayingURL
+            path = TMDB_API.v3.Movie.NowPlayingURL
         case .upcoming:
-            path = TMDB_API.Movie.UpcomingURL
+            path = TMDB_API.v3.Movie.UpcomingURL
         case .none:
             path = ""
         }
@@ -126,6 +126,7 @@ class AllMoviesVC: UIViewController {
                 switch result {
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
+                    self.presentSimpleAlert(withTitle: "Something went wrong", message: error.rawValue)
                 case .success(let feed):
                     self.movieFeed = feed
                     if let movies = feed.movies, movies.count > 0 {
