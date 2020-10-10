@@ -68,4 +68,3 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 #project files
-*Secrets.swift

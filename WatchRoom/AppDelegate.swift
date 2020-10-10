@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = true
 
         changeTabBarAppearance()
-        ReviewManager.shared.increaseAppOpenCount()
         return true
     }
     

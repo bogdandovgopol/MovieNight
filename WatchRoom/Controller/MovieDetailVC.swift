@@ -567,19 +567,23 @@ extension MovieDetailVC: UICollectionViewDataSource {
 
 //MARK: UICollectionViewDelegate implementation
 extension MovieDetailVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 2:
-            selectedMovie = similarMovies[indexPath.item]
-        case 3:
-            selectedMovie = recommendedMovies[indexPath.item]
-        default:break
-        }
-        
+    fileprivate func openMovieDetails() {
         let storyboard = UIStoryboard(name: StoryboardIDs.MainStoryboard, bundle: nil)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: VCIDs.MovieDetailVC) as! MovieDetailVC
         movieDetailVC.id = selectedMovie.id
         present(movieDetailVC, animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            selectedMovie = similarMovies[indexPath.item]
+            openMovieDetails()
+        case 3:
+            selectedMovie = recommendedMovies[indexPath.item]
+            openMovieDetails()
+        default:break
+        }
     }
 }
 

@@ -38,12 +38,12 @@
 		436EAFD624F766520093A9AC /* DetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436EAFD424F766520093A9AC /* DetailHeader.xib */; };
 		4376CBE024F53ED9009C1B82 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376CBDF24F53ED8009C1B82 /* MovieDetail.swift */; };
 		4376CBE224F53FAA009C1B82 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376CBE124F53FAA009C1B82 /* Genre.swift */; };
+		438796D4253135E9007052EE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438796D3253135E9007052EE /* Secrets.swift */; };
 		43AD6E7A2519ADE800DB8FA8 /* TMDBActionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AD6E792519ADE800DB8FA8 /* TMDBActionResponse.swift */; };
 		43B9B85E24F2646F00A4211C /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9B85D24F2646F00A4211C /* MovieDetailVC.swift */; };
 		43B9B86524F3627B00A4211C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9B86424F3627B00A4211C /* Section.swift */; };
 		43B9B86724F3BEAE00A4211C /* AllMoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9B86624F3BEAE00A4211C /* AllMoviesVC.swift */; };
 		43D9688B24EDE99600A1EE49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688A24EDE99600A1EE49 /* Constants.swift */; };
-		43D9688D24EDE9AC00A1EE49 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688C24EDE9AC00A1EE49 /* Secrets.swift */; };
 		43D9688F24EDEA0B00A1EE49 /* RESTful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9688E24EDEA0B00A1EE49 /* RESTful.swift */; };
 		43D9689524EDFCEA00A1EE49 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689424EDFCEA00A1EE49 /* UIColorExtension.swift */; };
 		43D9689724EE11DB00A1EE49 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */; };
@@ -144,12 +144,12 @@
 		4376CBDF24F53ED8009C1B82 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		4376CBE124F53FAA009C1B82 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		43845D6B24ED031C00448552 /* WatchRoom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchRoom.entitlements; sourceTree = "<group>"; };
+		438796D3253135E9007052EE /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		43AD6E792519ADE800DB8FA8 /* TMDBActionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBActionResponse.swift; sourceTree = "<group>"; };
 		43B9B85D24F2646F00A4211C /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
 		43B9B86424F3627B00A4211C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		43B9B86624F3BEAE00A4211C /* AllMoviesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMoviesVC.swift; sourceTree = "<group>"; };
 		43D9688A24EDE99600A1EE49 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		43D9688C24EDE9AC00A1EE49 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		43D9688E24EDEA0B00A1EE49 /* RESTful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTful.swift; sourceTree = "<group>"; };
 		43D9689424EDFCEA00A1EE49 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		43D9689624EE11DB00A1EE49 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -306,6 +306,14 @@
 			path = DetailHeader;
 			sourceTree = "<group>";
 		};
+		438796D2253135D9007052EE /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				438796D3253135E9007052EE /* Secrets.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		43D9688524EDE91C00A1EE49 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,14 +389,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		43D9689224EDEBB800A1EE49 /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				43D9688C24EDE9AC00A1EE49 /* Secrets.swift */,
-			);
-			path = Secrets;
-			sourceTree = "<group>";
-		};
 		43D9689324EDFCD700A1EE49 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,12 +437,12 @@
 		43F4E26B24ECE8900075CAF1 /* WatchRoom */ = {
 			isa = PBXGroup;
 			children = (
+				438796D2253135D9007052EE /* Secrets */,
 				43D9688724EDE92300A1EE49 /* Model */,
 				43D9688624EDE92000A1EE49 /* View */,
 				43D9688524EDE91C00A1EE49 /* Controller */,
 				43D9689324EDFCD700A1EE49 /* Extension */,
 				43D9688824EDE93C00A1EE49 /* Util */,
-				43D9689224EDEBB800A1EE49 /* Secrets */,
 				43845D6B24ED031C00448552 /* WatchRoom.entitlements */,
 				43F4E26C24ECE8900075CAF1 /* AppDelegate.swift */,
 				43F4E26E24ECE8900075CAF1 /* SceneDelegate.swift */,
@@ -782,7 +782,6 @@
 				43221AB8251841A80004D36F /* StringExtension.swift in Sources */,
 				43455CE925157D40005DFC60 /* PersistanceService.swift in Sources */,
 				43F4E27124ECE8900075CAF1 /* DiscoverVC.swift in Sources */,
-				43D9688D24EDE9AC00A1EE49 /* Secrets.swift in Sources */,
 				43427D0B24F8AFD400DF6BE3 /* UIImageExtension.swift in Sources */,
 				43B9B86524F3627B00A4211C /* Section.swift in Sources */,
 				43D9689B24EE132B00A1EE49 /* UIViewControllerExtension.swift in Sources */,
@@ -803,6 +802,7 @@
 				43F092AC24F25FFE000DC2AD /* SearchVC.swift in Sources */,
 				4358F74B2500912A006A3014 /* Credits.swift in Sources */,
 				43F092AA24F1F842000DC2AD /* ReviewManager.swift in Sources */,
+				438796D4253135E9007052EE /* Secrets.swift in Sources */,
 				436EAFC824F763EB0093A9AC /* PersonCell.swift in Sources */,
 				4339A84824EFB0E200179C12 /* SectionHeader.swift in Sources */,
 				43E92C0125030BE500B774BB /* ReviewService.swift in Sources */,
@@ -1001,7 +1001,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = WatchRoom/Info.plist;
@@ -1010,7 +1010,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dovgopol.MovieNight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1026,7 +1026,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WatchRoom/WatchRoom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 727Q9XPG67;
 				INFOPLIST_FILE = WatchRoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1034,7 +1034,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dovgopol.MovieNight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
