@@ -14,9 +14,3 @@ You can try the app at the [App Store](https://apps.apple.com/us/app/id152036463
 ## Dependencies
 Firebase
 Kingfisher
-
-## Contact Info:
-- Email: bogdan@dovgopol.dev
-- Web: [dovgopol.dev](https://dovgopol.dev)
-
-# Thanks for stopping by!
