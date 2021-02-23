@@ -11,6 +11,6 @@ MovieNight is a Swift iOS app showing currently playing and upcoming movies usin
 You can try the app at the [App Store](https://apps.apple.com/us/app/id1520364631).
 
 ## Dependencies
-Firebase
-Kingfisher
+* Firebase
+* Kingfisher
 
